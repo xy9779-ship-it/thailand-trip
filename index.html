@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🇹🇭 泰国曼谷+清迈 8天7晚行程规划</title>
+<style>
+  :root {
+    --bg: #faf8f5;
+    --card: #ffffff;
+    --text: #2d2a26;
+    --muted: #7a7368;
+    --accent: #c77d3e;
+    --accent2: #4a8c6f;
+    --accent3: #8b5e3c;
+    --border: #e8e3db;
+    --tag-bg: #f5f1eb;
+    --bangkok: #e07b5a;
+    --chiangmai: #5a9e7c;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.08);
+    --radius: 12px;
+    --highlight: #fff3cd;
+    --search-bg: #f0ece6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1815;
+      --card: #24211e;
+      --text: #e8e4dd;
+      --muted: #9c948a;
+      --accent: #e09652;
+      --accent2: #6ab896;
+      --accent3: #b8845c;
+      --border: #363330;
+      --tag-bg: #2d2924;
+      --shadow: 0 1px 3px rgba(0,0,0,0.2);
+      --shadow-hover: 0 4px 16px rgba(0,0,0,0.3);
+      --highlight: #4a3f1a;
+      --search-bg: #2d2924;
+    }
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 30%, #d4c8b8 70%, #c5d5c0 100%);
+    padding: 48px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (prefers-color-scheme: dark) {
+    .hero { background: linear-gradient(135deg, #2d2418 0%, #34291c 30%, #2a3025 70%, #1e2a20 100%); }
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -24px; left: 0; right: 0; height: 48px;
+    background: var(--bg); border-radius: 50% 50% 0 0;
+  }
+  .hero h1 { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .hero .subtitle { font-size: 1rem; color: var(--muted); font-weight: 400; }
+  .hero .meta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+  .hero .meta-chip {
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(8px);
+    padding: 5px 12px; border-radius: 20px; font-size: 0.82rem; color: var(--text);
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    .hero .meta-chip { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.1); }
+  }
+
+  /* Container */
+  .container { max-width: 820px; margin: 0 auto; padding: 24px 20px 60px; }
+
+  /* Section titles */
+  .section-title {
+    font-size: 1.25rem; font-weight: 700; margin: 36px 0 16px;
+    padding-left: 14px; border-left: 3px solid var(--accent);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title .emoji { font-size: 1.35rem; }
+
+  /* ====== SEARCH BAR ====== */
+  .search-wrap {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg); padding: 12px 0 8px;
+    margin-bottom: 4px;
+  }
+  .search-bar {
+    display: flex; gap: 8px; align-items: center;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 28px; padding: 8px 8px 8px 18px;
+    box-shadow: var(--shadow);
+  }
+  .search-bar input {
+    flex: 1; border: none; background: transparent;
+    font-size: 0.92rem; color: var(--text); outline: none;
+    font-family: inherit; min-width: 0;
+  }
+  .search-bar input::placeholder { color: var(--muted); }
+  .search-bar .search-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .search-bar .search-clear {
+    background: none; border: none; font-size: 1.2rem; cursor: pointer;
+    color: var(--muted); padding: 4px 8px; border-radius: 50%;
+    display: none; line-height: 1;
+  }
+  .search-bar .search-clear.visible { display: block; }
+  .search-bar .search-clear:hover { background: var(--tag-bg); }
+  .search-hint {
+    font-size: 0.75rem; color: var(--muted); margin-top: 6px; padding-left: 18px;
+    display: flex; gap: 12px; flex-wrap: wrap;
+  }
+  .search-hint span {
+    cursor: pointer; padding: 2px 10px; border-radius: 12px;
+    background: var(--tag-bg); border: 1px solid var(--border);
+    transition: all 0.15s;
+  }
+  .search-hint span:hover { border-color: var(--accent); color: var(--accent); }
+  .no-results {
+    text-align: center; padding: 40px 20px; color: var(--muted);
+    display: none;
+  }
+  .no-results.visible { display: block; }
+  .no-results .big-emoji { font-size: 3rem; margin-bottom: 12px; }
+  .result-count {
+    font-size: 0.8rem; color: var(--muted); margin-bottom: 8px;
+    display: none;
+  }
+  .result-count.visible { display: block; }
+
+  /* Highlight */
+  .highlight-match {
+    background: var(--highlight); padding: 1px 3px; border-radius: 3px;
+    font-weight: 600;
+  }
+
+  /* ====== GUIDE PANEL ====== */
+  .guide-panel {
+    display: none; position: fixed; top: 0; right: 0; bottom: 0;
+    width: 420px; max-width: 92vw; background: var(--card);
+    border-left: 1px solid var(--border); z-index: 200;
+    box-shadow: -4px 0 24px rgba(0,0,0,0.12);
+    flex-direction: column; overflow: hidden;
+  }
+  .guide-panel.open { display: flex; }
+  .guide-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.35);
+    z-index: 199;
+  }
+  .guide-overlay.open { display: block; }
+  .guide-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px; border-bottom: 1px solid var(--border);
+  }
+  .guide-header h3 { font-size: 1rem; font-weight: 600; }
+  .guide-close {
+    background: none; border: none; font-size: 1.4rem; cursor: pointer;
+    color: var(--muted); padding: 4px 8px; border-radius: 8px;
+  }
+  .guide-close:hover { background: var(--tag-bg); }
+  .guide-body { flex: 1; overflow-y: auto; padding: 16px 20px; }
+  .guide-body h4 { font-size: 0.9rem; margin: 14px 0 6px; color: var(--accent); }
+  .guide-body h4:first-child { margin-top: 0; }
+  .guide-body p, .guide-body li { font-size: 0.85rem; color: var(--text); line-height: 1.6; margin-bottom: 6px; }
+  .guide-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .guide-body a {
+    color: var(--accent); text-decoration: none; word-break: break-all;
+  }
+  .guide-body a:hover { text-decoration: underline; }
+  .guide-body .guide-tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+  .guide-body .guide-tag {
+    font-size: 0.73rem; padding: 3px 10px; border-radius: 14px;
+    background: var(--tag-bg); border: 1px solid var(--border);
+  }
+  .guide-loading {
+    display: flex; align-items: center; justify-content: center;
+    height: 200px; color: var(--muted); font-size: 0.9rem;
+  }
+  .guide-loading .spinner {
+    width: 24px; height: 24px; border: 2px solid var(--border);
+    border-top-color: var(--accent); border-radius: 50%;
+    animation: spin 0.8s linear infinite; margin-right: 10px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Overview grid */
+  .overview-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px; margin-bottom: 28px;
+  }
+  .overview-card {
+    background: var(--card); border-radius: var(--radius); padding: 16px 18px;
+    border: 1px solid var(--border); box-shadow: var(--shadow);
+  }
+  .overview-card .label { font-size: 0.76rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .overview-card .value { font-size: 1rem; font-weight: 600; }
+
+  /* Day card */
+  .day-card {
+    background: var(--card); border-radius: var(--radius); border: 1px solid var(--border);
+    box-shadow: var(--shadow); margin-bottom: 14px; overflow: hidden;
+    transition: box-shadow 0.2s, opacity 0.2s;
+  }
+  .day-card:hover { box-shadow: var(--shadow-hover); }
+  .day-card.hidden-by-search { display: none; }
+  .day-header {
+    display: flex; align-items: center; gap: 12px; padding: 16px 20px;
+    cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
+  }
+  .day-header:hover { background: var(--tag-bg); }
+  .day-num {
+    width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.95rem; flex-shrink: 0;
+  }
+  .day-num.bangkok { background: #fde8df; color: var(--bangkok); }
+  .day-num.chiangmai { background: #dff0e7; color: var(--chiangmai); }
+  .day-num.transit { background: #e8e0f0; color: #7b5ea7; }
+  .day-info { flex: 1; min-width: 0; }
+  .day-info .day-title { font-weight: 600; font-size: 1rem; }
+  .day-info .day-meta { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+  .day-arrow { color: var(--muted); font-size: 0.85rem; transition: transform 0.25s; flex-shrink: 0; }
+  .day-card.open .day-arrow { transform: rotate(180deg); }
+
+  .day-body { display: none; padding: 0 20px 20px; border-top: 1px solid var(--border); }
+  .day-card.open .day-body { display: block; }
+
+  /* Activity item */
+  .activity { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px dashed var(--border); align-items: flex-start; }
+  .activity:last-child { border-bottom: none; }
+  .act-icon {
+    width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .act-icon.food { background: #fef3e4; }
+  .act-icon.sight { background: #e8f0fe; }
+  .act-icon.shop { background: #fce4ec; }
+  .act-icon.transport { background: #e8eaf6; }
+  .act-icon.relax { background: #e8f5e9; }
+  .act-icon.coffee { background: #efebe9; }
+  .act-icon.spa { background: #f3e5f5; }
+  .act-content { flex: 1; min-width: 0; }
+  .act-content .act-name { font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .act-content .act-reason { font-size: 0.82rem; color: var(--accent3); margin-top: 2px; line-height: 1.45; }
+  .act-content .act-reason::before { content: '💡 '; font-size: 0.75rem; }
+  .act-meta { display: flex; gap: 10px; margin-top: 6px; flex-wrap: wrap; align-items: center; }
+  .act-tag {
+    font-size: 0.73rem; padding: 3px 10px; border-radius: 14px; font-weight: 500;
+    white-space: nowrap;
+  }
+  .tag-transport { background: #e8eaf6; color: #4a5fa8; }
+  .tag-time { background: #fef3e4; color: #b87a2b; }
+  .tag-price { background: #e8f5e9; color: #3d7a4f; }
+
+  /* Guide search button per activity */
+  .guide-btn {
+    font-size: 0.7rem; padding: 2px 10px; border-radius: 12px;
+    border: 1px solid var(--accent); background: transparent;
+    color: var(--accent); cursor: pointer; font-weight: 500;
+    transition: all 0.15s; white-space: nowrap;
+  }
+  .guide-btn:hover { background: var(--accent); color: #fff; }
+
+  /* Hotel cards */
+  .hotel-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .hotel-card {
+    background: var(--card); border-radius: var(--radius); padding: 18px;
+    border: 1px solid var(--border); box-shadow: var(--shadow);
+  }
+  .hotel-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+  .hotel-card .hotel-dates { font-size: 0.78rem; color: var(--accent); font-weight: 500; margin-bottom: 8px; }
+  .hotel-card .hotel-detail { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+  .hotel-card .hotel-detail span { display: block; margin-top: 3px; }
+
+  /* Budget table */
+  .budget-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .budget-table th, .budget-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  .budget-table th { font-weight: 600; color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .budget-table tr:last-child td { font-weight: 700; border-bottom: 2px solid var(--accent); }
+  .budget-table .amount { text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* Checklist */
+  .checklist { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 8px; }
+  .check-item { display: flex; gap: 10px; padding: 10px 14px; background: var(--card); border-radius: 8px; border: 1px solid var(--border); font-size: 0.85rem; align-items: center; }
+  .check-item .chk-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 4px; margin-bottom: 16px; flex-wrap: wrap; }
+  .tab-btn {
+    padding: 7px 16px; border-radius: 20px; border: 1px solid var(--border); background: var(--card);
+    font-size: 0.83rem; cursor: pointer; color: var(--muted); font-weight: 500;
+    transition: all 0.15s;
+  }
+  .tab-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* Tips */
+  .tips-list { list-style: none; }
+  .tips-list li { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; display: flex; gap: 10px; align-items: flex-start; }
+  .tips-list li:last-child { border-bottom: none; }
+  .tips-list .tip-icon { flex-shrink: 0; font-size: 1.1rem; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .hero { padding: 36px 16px 32px; }
+    .hero h1 { font-size: 1.4rem; }
+    .container { padding: 16px 12px 40px; }
+    .day-header { padding: 14px 16px; }
+    .day-body { padding: 0 16px 16px; }
+    .activity { gap: 10px; padding: 12px 0; }
+    .act-icon { width: 30px; height: 30px; font-size: 0.95rem; border-radius: 8px; }
+    .guide-panel { width: 100vw; max-width: 100vw; }
+  }
+
+  /* Print */
+  @media print {
+    .day-card { break-inside: avoid; }
+    .day-body { display: block !important; }
+    .day-arrow, .search-wrap, .guide-btn, .tabs, .guide-panel, .guide-overlay { display: none !important; }
+    .hero { padding: 20px; }
+    body { font-size: 11px; }
+  }
+
+  /* Animations */
+  @keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
+  .day-card { animation: fadeIn 0.35s ease both; }
+  .day-card:nth-child(1) { animation-delay: 0s; }
+  .day-card:nth-child(2) { animation-delay: 0.04s; }
+  .day-card:nth-child(3) { animation-delay: 0.08s; }
+  .day-card:nth-child(4) { animation-delay: 0.12s; }
+  .day-card:nth-child(5) { animation-delay: 0.16s; }
+  .day-card:nth-child(6) { animation-delay: 0.2s; }
+  .day-card:nth-child(7) { animation-delay: 0.24s; }
+  .day-card:nth-child(8) { animation-delay: 0.28s; }
+
+  @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+  .guide-panel.open { animation: slideIn 0.25s ease; }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>🇹🇭 泰国曼谷+清迈 · 8天7晚</h1>
+  <p class="subtitle">松弛度假 × 河畔精品 × 咖啡巡礼</p>
+  <div class="meta-row">
+    <span class="meta-chip">📅 9/26 – 10/3</span>
+    <span class="meta-chip">✈️ 上海出发</span>
+    <span class="meta-chip">🏨 4家酒店</span>
+    <span class="meta-chip">💆 SPA & 咖啡</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ====== SEARCH BAR ====== -->
+<div class="search-wrap">
+  <div class="search-bar">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="搜索景点、美食、SPA、购物… 试试搜"必打卡"或"必买"或"咖啡"…" oninput="doSearch()" onfocus="this.select()">
+    <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+  </div>
+  <div class="search-hint">
+    试试搜：
+    <span onclick="quickSearch('必打卡')">必打卡</span>
+    <span onclick="quickSearch('必买')">必买</span>
+    <span onclick="quickSearch('咖啡')">咖啡</span>
+    <span onclick="quickSearch('夜市')">夜市</span>
+    <span onclick="quickSearch('SPA')">SPA</span>
+    <span onclick="quickSearch('米其林')">米其林</span>
+    <span onclick="quickSearch('寺庙')">寺庙</span>
+    <span onclick="quickSearch('按摩')">按摩</span>
+  </div>
+</div>
+<div class="result-count" id="resultCount"></div>
+<div class="no-results" id="noResults">
+  <div class="big-emoji">🔎</div>
+  <p>没找到匹配的结果，试试其他关键词？</p>
+</div>
+
+<!-- ====== OVERVIEW ====== -->
+<div class="section-title"><span class="emoji">🗺️</span> 行程总览</div>
+<div class="overview-grid">
+  <div class="overview-card"><div class="label">曼谷</div><div class="value">9/26 – 9/29 · 2.5 天</div></div>
+  <div class="overview-card"><div class="label">清迈</div><div class="value">9/29 – 10/3 · 3.5 天</div></div>
+  <div class="overview-card"><div class="label">风格</div><div class="value">🧘 放松 > 🛍️ 购物 > 🍜 美食 > 🛕 文化</div></div>
+  <div class="overview-card"><div class="label">预算</div><div class="value">两人 ¥8,000–15,000（不含机酒）</div></div>
+</div>
+
+<!-- ====== HOTELS ====== -->
+<div class="section-title"><span class="emoji">🏨</span> 住宿安排</div>
+<div class="hotel-row">
+  <div class="hotel-card">
+    <h4>🏢 曼谷城堡丽笙酒店</h4>
+    <div class="hotel-dates">9/26 – 9/29 · Asoke 阿索克</div>
+    <div class="hotel-detail">
+      <span>📍 BTS Asoke & MRT Sukhumvit 双轨交汇，Terminal 21 正对面</span>
+      <span>💡 曼谷交通最便利的区域之一，早餐丰盛，高楼层泳池看城景</span>
+    </div>
+  </div>
+  <div class="hotel-card">
+    <h4>🏡 Maladee Rendezvous</h4>
+    <div class="hotel-dates">9/29 – 10/1 · 长康路河畔</div>
+    <div class="hotel-detail">
+      <span>📍 湄滨河畔殖民风格精品酒店，仅34间房，2022年开业</span>
+      <span>💡 独立浴缸、开夜床服务、免费下午茶、单点早餐无限量 — 行程的度假感峰值</span>
+    </div>
+  </div>
+  <div class="hotel-card">
+    <h4>🏙️ G Nimman / CHINO@NIMMAN</h4>
+    <div class="hotel-dates">10/1 – 10/3 · 宁曼路</div>
+    <div class="hotel-detail">
+      <span>📍 清迈最潮商圈核心，步行即达 Maya 商场 & One Nimman</span>
+      <span>💡 纯白极简设计，和 Maladee 形成体验反差 — 河畔度假 → 商圈活力</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== ITINERARY ====== -->
+<div class="section-title"><span class="emoji">📅</span> 每日行程 <span style="font-weight:400;font-size:0.85rem;color:var(--muted);margin-left:8px;">点击展开 · 点 🔍 搜攻略</span></div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="expandAll()">展开全部</button>
+  <button class="tab-btn" onclick="collapseAll()">收起全部</button>
+  <button class="tab-btn" onclick="filterCity('bangkok')">🏙️ 只看曼谷</button>
+  <button class="tab-btn" onclick="filterCity('chiangmai')">🏔️ 只看清迈</button>
+  <button class="tab-btn" onclick="filterCity('all')">全部</button>
+</div>
+
+<!-- Day 1 -->
+<div class="day-card open" data-city="bangkok">
+  <div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="day-num bangkok">D1</div>
+    <div class="day-info">
+      <div class="day-title">落地曼谷 · 初探素坤逸</div>
+      <div class="day-meta">9/26 周六 · 半天有效时间</div>
+    </div>
+    <div class="day-arrow">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="activity" data-keywords="上海 曼谷 素万那普 飞行 抵达 落地 BKK 机场">
+      <div class="act-icon transport">✈️</div>
+      <div class="act-content">
+        <div class="act-name">上海 → 曼谷素万那普 (BKK) <button class="guide-btn" onclick="openGuide('曼谷素万那普机场攻略')">🔍 攻略</button></div>
+        <div class="act-reason">早班机 7:55 出发，当地时间 11:50 降落，下午就能开始玩，最大化第一天</div>
+        <div class="act-meta"><span class="act-tag tag-time">飞行约 4.5h</span></div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="机场快线 Makkasan 火车 进城 交通 机场到市区">
+      <div class="act-icon transport">🚆</div>
+      <div class="act-content">
+        <div class="act-name">机场快线 → Makkasan 站 → 酒店</div>
+        <div class="act-reason">最省钱的机场进城方式，直达 Asoke 区域，避开曼谷堵车</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">机场快线</span>
+          <span class="act-tag tag-time">约 30 分钟</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="泳池 游泳 放松 休息 时差 酒店设施 丽笙">
+      <div class="act-icon relax">🏊</div>
+      <div class="act-content">
+        <div class="act-name">酒店泳池放松 + 适应时差</div>
+        <div class="act-reason">长途飞行后不建议立刻暴走，丽笙 29 楼泳池俯瞰曼谷天际线，是落地后最好的"开机仪式"</div>
+        <div class="act-meta"><span class="act-tag tag-time">自由安排</span></div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="Terminal21 美食街 午餐 晚餐 芒果糯米饭 船面 泰式炒粉 必打卡 必吃">
+      <div class="act-icon food">🍜</div>
+      <div class="act-content">
+        <div class="act-name">午餐/晚餐：Terminal 21 美食街 (Pier 21) <button class="guide-btn" onclick="openGuide('曼谷 Terminal21 美食街攻略')">🔍 攻略</button></div>
+        <div class="act-reason">就在酒店对面，曼谷最干净实惠的商场美食街之一，芒果糯米饭、船面、泰式炒粉一站搞定，人均 ¥15-30</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">步行 2 分钟</span>
+          <span class="act-tag tag-price">¥15-30/人</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="Terminal21 逛街 购物 商场 设计师 本土品牌 必买 必逛">
+      <div class="act-icon shop">🛍️</div>
+      <div class="act-content">
+        <div class="act-name">逛 Terminal 21 <button class="guide-btn" onclick="openGuide('曼谷 Terminal21 购物攻略')">🔍 攻略</button></div>
+        <div class="act-reason">每层一个国家主题（东京、伊斯坦布尔、旧金山…），好逛不贵，本土设计师品牌多，适合作为泰国购物的"热身"</div>
+        <div class="act-meta"><span class="act-tag tag-transport">步行</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Day 2 -->
+<div class="day-card open" data-city="bangkok">
+  <div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="day-num bangkok">D2</div>
+    <div class="day-info">
+      <div class="day-title">乍都乍周末市场 + Siam 商圈</div>
+      <div class="day-meta">9/27 周日 · 曼谷完整一天</div>
+    </div>
+    <div class="day-arrow">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="activity" data-keywords="乍都乍 Chatuchak 周末市场 跳蚤市场 集市 淘货 必打卡 必逛 必买 手工艺品 古着">
+      <div class="act-icon shop">🛍️</div>
+      <div class="act-content">
+        <div class="act-name">乍都乍周末市场 (Chatuchak Weekend Market) <button class="guide-btn" onclick="openGuide('曼谷乍都乍周末市场攻略 必买')">🔍 攻略</button></div>
+        <div class="act-reason">亚洲最大的露天周末市场，15,000+ 摊位，只有周六日开 — 你正好在曼谷度过唯一一个周日，错过就没了。重点逛 2-4 区（设计师服饰）和 7 区（原创艺术），椰子冰淇淋和烤大虾是标配</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">BTS → Mo Chit 站</span>
+          <span class="act-tag tag-time">从酒店约 15 分钟</span>
+          <span class="act-tag tag-price">逛 3-4 小时</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="Siam 暹罗 商圈 Paragon Center Discovery 购物 奢侈品 潮流 必买">
+      <div class="act-icon shop">🛍️</div>
+      <div class="act-content">
+        <div class="act-name">Siam 商圈：Siam Paragon / Center / Discovery <button class="guide-btn" onclick="openGuide('曼谷 Siam 商圈购物攻略')">🔍 攻略</button></div>
+        <div class="act-reason">曼谷最高端的购物集群，三个商场各有定位：Paragon 奢侈品+美食、Center 潮流品牌、Discovery 设计概念店。从乍都乍返程顺路，BTS 直达</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">BTS → Siam 站</span>
+          <span class="act-tag tag-time">从乍都乍约 15 分钟</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="AfterYou 甜品 奶茶冰山 刨冰 网红 必打卡 甜点">
+      <div class="act-icon food">🍰</div>
+      <div class="act-content">
+        <div class="act-name">After You Dessert Cafe <button class="guide-btn" onclick="openGuide('曼谷 After You 甜品攻略')">🔍 攻略</button></div>
+        <div class="act-reason">泰国现象级甜品店，泰式奶茶冰山是招牌 — 刨冰淋上浓郁奶茶酱，挖开里面还有面包丁和仙草。Siam Paragon 地下就有，逛累了直接去</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">Siam Paragon B1</span>
+          <span class="act-tag tag-price">¥30-50/人</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="荣泰 米粉汤 米其林 必比登 晚餐 老店 潮汕 必吃">
+      <div class="act-icon food">🍽️</div>
+      <div class="act-content">
+        <div class="act-name">晚餐：Rung Rueang Pork Noodle（荣泰米粉汤） <button class="guide-btn" onclick="openGuide('曼谷荣泰米粉汤攻略')">🔍 攻略</button></div>
+        <div class="act-reason">素坤逸 50 年老店，连续 8 年米其林必比登，潮汕风味×泰式灵魂，一碗米粉汤只要 ¥10-15。不是 fancy dinner，但这是曼谷最真实的味觉记忆</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">BTS → Phrom Phong，步行 5 分钟</span>
+          <span class="act-tag tag-price">¥15-25/人</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Day 3 -->
+<div class="day-card open" data-city="bangkok">
+  <div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="day-num bangkok">D3</div>
+    <div class="day-info">
+      <div class="day-title">大皇宫 + 卧佛寺 + 河滨夜市</div>
+      <div class="day-meta">9/28 周一 · 曼谷最后一个完整日</div>
+    </div>
+    <div class="day-arrow">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="activity" data-keywords="大皇宫 玉佛寺 Grand Palace 寺庙 文化 皇家 必打卡 必看 地标">
+      <div class="act-icon sight">🛕</div>
+      <div class="act-content">
+        <div class="act-name">大皇宫 + 玉佛寺 (Grand Palace & Wat Phra Kaew) <button class="guide-btn" onclick="openGuide('曼谷大皇宫攻略 门票 着装')">🔍 攻略</button></div>
+        <div class="act-reason">曼谷唯一"必看"的文化地标。与其跑五座庙走马观花，不如深度看这一座 — 泰国最神圣的佛像、拉玛基恩壁画、金碧辉煌的皇家建筑群，一个上午刚好</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">Grab/Bolt 打车</span>
+          <span class="act-tag tag-time">约 30 分钟</span>
+          <span class="act-tag tag-price">门票 ¥100/人</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="卧佛寺 Wat Pho 按摩 发源地 金色卧佛 寺庙 必打卡">
+      <div class="act-icon sight">🛕</div>
+      <div class="act-content">
+        <div class="act-name">卧佛寺 (Wat Pho) <button class="guide-btn" onclick="openGuide('曼谷卧佛寺攻略 按摩')">🔍 攻略</button></div>
+        <div class="act-reason">从大皇宫步行 10 分钟即达。46 米金色卧佛极为震撼，且这里是泰式按摩的发源地，寺庙内的按摩学校比外面更正宗。大皇宫看"皇家的泰国"，卧佛寺看"信仰的泰国"，两个视角互补</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">从大皇宫步行 10 分钟</span>
+          <span class="act-tag tag-price">门票 ¥60/人</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="Err 餐厅 米其林 必比登 午餐 创意泰餐 烤猪颈肉">
+      <div class="act-icon food">🍽️</div>
+      <div class="act-content">
+        <div class="act-name">午餐：Err Urban Rustic Thai <button class="guide-btn" onclick="openGuide('曼谷 Err Urban Rustic Thai 餐厅')">🔍 攻略</button></div>
+        <div class="act-reason">卧佛寺附近的米其林必比登，由曼谷名店 Bo.lan 团队打造，泰式创意菜在传统和现代之间找到了完美的平衡点。推荐烤猪颈肉和泰式鸡尾酒</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">步行 5 分钟</span>
+          <span class="act-tag tag-price">¥80-120/人</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="Asiatique 河滨夜市 摩天轮 河景 码头 必打卡 夜市 购物">
+      <div class="act-icon relax">🎡</div>
+      <div class="act-content">
+        <div class="act-name">Asiatique 河滨码头夜市 <button class="guide-btn" onclick="openGuide('曼谷 Asiatique 河滨夜市攻略')">🔍 攻略</button></div>
+        <div class="act-reason">不是那种塑料感的"游客夜市"。旧码头仓库改造，摩天轮 + 河景 + 1500 间商铺，傍晚坐免费接驳船从 BTS Saphan Taksin 过去，河风吹着比坐车舒服十倍</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">BTS → Saphan Taksin → 免费接驳船</span>
+          <span class="act-tag tag-time">全程约 25 分钟</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Day 4 -->
+<div class="day-card open" data-city="chiangmai">
+  <div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="day-num transit">D4</div>
+    <div class="day-info">
+      <div class="day-title">曼谷 → 清迈 · 入住 Maladee</div>
+      <div class="day-meta">9/29 周二 · 中转日，下午开始清迈时光</div>
+    </div>
+    <div class="day-arrow">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="activity" data-keywords="曼谷 清迈 飞机 航班 内陆 交通 中转">
+      <div class="act-icon transport">✈️</div>
+      <div class="act-content">
+        <div class="act-name">曼谷 → 清迈</div>
+        <div class="act-reason">推荐上午 10-11 点航班，飞行仅 1 小时 20 分钟。选飞机而非火车/大巴，是为了保住清迈第一个下午和晚上 — 8 天行程经不起 12 小时消耗在路上</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">Grab → BKK 机场</span>
+          <span class="act-tag tag-time">飞行 1h20m + 往返机场约 4h</span>
+          <span class="act-tag tag-price">机票 ¥200-400/人</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="Maladee 酒店 入住 泳池 按摩浴缸 下午茶 浴缸 殖民风格 必打卡 网红酒店">
+      <div class="act-icon relax">🏡</div>
+      <div class="act-content">
+        <div class="act-name">入住 Maladee Rendezvous + 酒店时光 <button class="guide-btn" onclick="openGuide('清迈 Maladee Rendezvous 酒店攻略')">🔍 攻略</button></div>
+        <div class="act-reason">这才是今天的主角。殖民风格中庭泳池、加热按摩浴缸、免费下午茶、房间内独立大浴缸 — 从曼谷飞过来，不需要赶景点，酒店本身就是目的地</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">机场 Grab → 酒店，约 15 分钟</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="长康路 夜市 Night Bazaar 小吃 泰北香肠 青木瓜沙拉 芒果糯米饭 必吃 必打卡">
+      <div class="act-icon food">🍜</div>
+      <div class="act-content">
+        <div class="act-name">傍晚：步行逛长康路夜市 (Night Bazaar) <button class="guide-btn" onclick="openGuide('清迈长康路夜市攻略 必吃')">🔍 攻略</button></div>
+        <div class="act-reason">清迈最老牌的夜市，每晚都有，不像周日夜市那样人挤人。从 Maladee 散步 500 米就到，泰北香肠 (Sai Oua)、青木瓜沙拉、芒果糯米饭，边逛边吃就是清迈的正确打开方式</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">步行 5-8 分钟</span>
+          <span class="act-tag tag-price">小吃 ¥5-20/份</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Day 5 -->
+<div class="day-card open" data-city="chiangmai">
+  <div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="day-num chiangmai">D5</div>
+    <div class="day-info">
+      <div class="day-title">素贴山双龙寺 + 古城黄昏</div>
+      <div class="day-meta">9/30 周三 · 清迈完整一天</div>
+    </div>
+    <div class="day-arrow">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="activity" data-keywords="Maladee 早餐 单点 早午餐 brunch 无限量">
+      <div class="act-icon coffee">🍳</div>
+      <div class="act-content">
+        <div class="act-name">Maladee 单点早餐 — 慢慢吃</div>
+        <div class="act-reason">Maladee 的早餐是公认的亮点，泰式+西式单点无限量，每一道都是现做。这不是赶路前的"补给"，而是值得坐下来享受一个小时的体验。中文菜单，无压力</div>
+        <div class="act-meta"><span class="act-tag tag-time">尽情享用，不用赶</span></div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="素贴山 双龙寺 Doi Suthep 寺庙 清迈全景 娜迦 必打卡 地标 自然">
+      <div class="act-icon sight">🏔️</div>
+      <div class="act-content">
+        <div class="act-name">素贴山 + 双龙寺 (Doi Suthep) <button class="guide-btn" onclick="openGuide('清迈素贴山双龙寺攻略 交通')">🔍 攻略</button></div>
+        <div class="act-reason">清迈的灵魂所在。309 级台阶两侧的金色娜迦巨龙、山顶俯瞰整个清迈平原、寺庙内供奉的佛骨舍利 — 这是清迈唯一不可错过的"自然+文化"体验。30 分钟山路车程本身就是一场风景</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">Bolt/Grab 包车往返</span>
+          <span class="act-tag tag-time">单程约 30 分钟</span>
+          <span class="act-tag tag-price">车费 ¥60-80 往返</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="清迈大学 后门 小吃街 咖喱面 Khao Soi 泰北 必吃 午餐">
+      <div class="act-icon food">🍜</div>
+      <div class="act-content">
+        <div class="act-name">午餐：清迈大学后门小吃街 + 泰北咖喱面</div>
+        <div class="act-reason">素贴山下来顺路经过。这里才是清迈人真正吃饭的地方 — 一碗 Khao Soi（泰北咖喱面）¥8-12，浓郁椰奶咖喱汤配上酥脆炸面，是清迈的味觉符号</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">下山途中，顺路</span>
+          <span class="act-tag tag-price">¥10-20/人</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="塔佩门 柴迪隆寺 古城 鸽子 夕阳 黄昏 拍照 必打卡 寺庙">
+      <div class="act-icon sight">🛕</div>
+      <div class="act-content">
+        <div class="act-name">塔佩门 + 柴迪隆寺 (Wat Chedi Luang) <button class="guide-btn" onclick="openGuide('清迈塔佩门柴迪隆寺攻略')">🔍 攻略</button></div>
+        <div class="act-reason">黄昏是古城最美的时刻。塔佩门广场喂鸽子是清迈的经典画面，柴迪隆寺的古老佛塔在夕阳下呈现暖金色 — 不需要门票，不需要导游，站着看就好</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">Grab 到塔佩门，步行逛</span>
+          <span class="act-tag tag-time">塔佩门→柴迪隆寺步行 8 分钟</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="Huen Phen 泰北菜 晚餐 老字号 炸猪皮 绿咖喱 兰纳 必吃">
+      <div class="act-icon food">🍽️</div>
+      <div class="act-content">
+        <div class="act-name">晚餐：Huen Phen 泰北菜 <button class="guide-btn" onclick="openGuide('清迈 Huen Phen 泰北菜攻略')">🔍 攻略</button></div>
+        <div class="act-reason">清迈泰北菜老字号，开了 40 多年。炸猪皮、泰北香肠 (Sai Oua)、绿咖喱、蚂蚁蛋汤（敢的话）— 这是你在别处吃不到的兰纳味道。白天是简餐，晚上切换成古董装饰的精致餐厅</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">从柴迪隆寺步行 5 分钟</span>
+          <span class="act-tag tag-price">¥50-80/人</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Day 6 -->
+<div class="day-card open" data-city="chiangmai">
+  <div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="day-num chiangmai">D6</div>
+    <div class="day-info">
+      <div class="day-title">换酒店 + 宁曼路咖啡三连跳</div>
+      <div class="day-meta">10/1 周四 · 从河畔切换到商圈</div>
+    </div>
+    <div class="day-arrow">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="activity" data-keywords="换酒店 Maladee 退房 搬家">
+      <div class="act-icon transport">🚖</div>
+      <div class="act-content">
+        <div class="act-name">换酒店：Maladee → G Nimman / CHINO</div>
+        <div class="act-reason">两家酒店仅 4 公里，Grab 15 分钟。宁曼路是清迈最年轻、最有活力的街区，和河畔的殖民慢节奏形成鲜明反差 — 这是刻意设计的变化</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">Grab/Bolt</span>
+          <span class="act-tag tag-time">约 15 分钟</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="Tong Tem Toh 泰北菜 午餐 烤猪颈肉 网红 必吃 宁曼路">
+      <div class="act-icon food">🍽️</div>
+      <div class="act-content">
+        <div class="act-name">午餐：Tong Tem Toh 泰北菜 <button class="guide-btn" onclick="openGuide('清迈 Tong Tem Toh 餐厅攻略')">🔍 攻略</button></div>
+        <div class="act-reason">宁曼路最火的泰北菜餐厅之一，本地人和游客五五开。烤猪颈肉外焦里嫩，蘸上罗望子酱 — 很多清迈人会说这是全城最好的烤猪颈肉</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">步行可达</span>
+          <span class="act-tag tag-price">¥60-80/人</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="Ristr8to 咖啡 拉花 冠军 骷髅 宁曼路 必打卡 必喝">
+      <div class="act-icon coffee">☕</div>
+      <div class="act-content">
+        <div class="act-name">咖啡第一站：Ristr8to (宁曼 17 巷) <button class="guide-btn" onclick="openGuide('清迈 Ristr8to 咖啡攻略')">🔍 攻略</button></div>
+        <div class="act-reason">世界拉花冠军坐镇的传奇咖啡馆。骷髅头图案的招牌拿铁是清迈咖啡的名片，可以自选咖啡豆产地。即使不喝咖啡，光是看拉花过程就值回票价</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">步行</span>
+          <span class="act-tag tag-price">¥20-30/杯</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="Graph 咖啡 暗黑 工业风 冷萃 宁曼路 必打卡 拍照">
+      <div class="act-icon coffee">☕</div>
+      <div class="act-content">
+        <div class="act-name">咖啡第二站：Graph Cafe (宁曼 9 巷) <button class="guide-btn" onclick="openGuide('清迈 Graph Cafe 咖啡攻略')">🔍 攻略</button></div>
+        <div class="act-reason">暗黑工业风，和 Ristr8to 的阳光活力形成对比。特调冷萃是招牌，店面极小但每个角落都出片。清迈咖啡文化的另一面 — 安静、深沉、有态度</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">步行 5 分钟</span>
+          <span class="act-tag tag-price">¥25-35/杯</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="Roastniyom 咖啡 本地 传统 泰式 炼乳">
+      <div class="act-icon coffee">☕</div>
+      <div class="act-content">
+        <div class="act-name">咖啡第三站：Roastniyom (Santitham 区)</div>
+        <div class="act-reason">前两家是"游客会去的名店"，这一家是"本地人真正在喝的"。传统泰式咖啡 + 炼乳，简单直接，没有花活。三杯咖啡，三种人格，喝完你就懂了清迈</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">步行或短途 Grab</span>
+          <span class="act-tag tag-price">¥15-20/杯</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="One Nimman 文创 商场 设计师 香薰 手信 伴手礼 必买 必逛">
+      <div class="act-icon shop">🛍️</div>
+      <div class="act-content">
+        <div class="act-name">One Nimman 文创商场 <button class="guide-btn" onclick="openGuide('清迈 One Nimman 购物攻略')">🔍 攻略</button></div>
+        <div class="act-reason">清迈最有设计感的商场，红砖欧式建筑+钟楼，本土设计师品牌、香薰、手工艺品集中地。买手信来这里比夜市更有品质感</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">步行</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Day 7 -->
+<div class="day-card open" data-city="chiangmai">
+  <div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="day-num chiangmai">D7</div>
+    <div class="day-info">
+      <div class="day-title">SPA 日 + Maya 购物 + 告别晚餐</div>
+      <div class="day-meta">10/2 周五 · 旅行的最后完整日</div>
+    </div>
+    <div class="day-arrow">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="activity" data-keywords="Maya 购物中心 商场 牛仔裤 LEE Levis Harnn Thann 香薰 必买">
+      <div class="act-icon shop">🛍️</div>
+      <div class="act-content">
+        <div class="act-name">Maya 购物中心 <button class="guide-btn" onclick="openGuide('清迈 Maya 购物中心攻略')">🔍 攻略</button></div>
+        <div class="act-reason">清迈最大的购物中心之一，LEE/Levi's 牛仔裤比国内便宜 30-50%，一楼还有本地香薰品牌 Harnn 和 Thann — 比在机场免税店买划算。宁曼路口，步行即达</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">步行</span>
+          <span class="act-tag tag-time">逛 2-3 小时</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="Oasis Spa 水疗 按摩 精油 草药球 花瓣浴 高端 必体验 宁曼路 放松">
+      <div class="act-icon spa">💆</div>
+      <div class="act-content">
+        <div class="act-name">SPA 重头戏：Oasis Spa 宁曼路店（推荐） <button class="guide-btn" onclick="openGuide('清迈 Oasis Spa 攻略 价格')">🔍 攻略</button></div>
+        <div class="act-reason">清迈最高端的 SPA 品牌之一，宁曼路店是红色兰纳大宅，本身就是一景。"绿洲之旅"4 小时套餐包含泰式按摩+精油+草药球+花瓣浴，是对这趟以"放松"为第一优先级旅行的终极回应</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">步行或短途 Grab</span>
+          <span class="act-tag tag-time">4 小时</span>
+          <span class="act-tag tag-price">约 ¥800/人</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="Fah Lanna Let's Relax SPA 按摩 备选 泰囧 平价">
+      <div class="act-icon spa">💆</div>
+      <div class="act-content">
+        <div class="act-name">备选 SPA：Fah Lanna Spa 古城店 或 Let's Relax 宁曼路店 <button class="guide-btn" onclick="openGuide('清迈 Fah Lanna Spa 攻略')">🔍 攻略</button></div>
+        <div class="act-reason">Fah Lanna 是《泰囧》取景地，兰纳庭院风格，2 小时 ¥350；Let's Relax 是泰国连锁品质之选，2 小时 ¥200。如果 Oasis 预算太高或订满，这两个是可靠的后备</div>
+        <div class="act-meta">
+          <span class="act-tag tag-price">¥200-350/人</span>
+        </div>
+      </div>
+    </div>
+    <div class="activity" data-keywords="David's Kitchen 法餐 泰餐 融合 告别晚餐 高端 必吃 TripAdvisor">
+      <div class="act-icon food">🍽️</div>
+      <div class="act-content">
+        <div class="act-name">告别晚餐：David's Kitchen <button class="guide-btn" onclick="openGuide('清迈 David Kitchen 餐厅攻略')">🔍 攻略</button></div>
+        <div class="act-reason">清迈传奇餐厅，法餐×泰餐融合，TripAdvisor 清迈第一常年霸榜。老板 David 是英国人，会亲自到每桌打招呼。这不是一顿饭，是给整趟旅行画上的一个精致的句号。需提前 1-2 天预约</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">Grab 约 15 分钟</span>
+          <span class="act-tag tag-price">¥200-300/人</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Day 8 -->
+<div class="day-card open" data-city="chiangmai">
+  <div class="day-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="day-num transit">D8</div>
+    <div class="day-info">
+      <div class="day-title">清迈 → 上海 · 回家</div>
+      <div class="day-meta">10/3 周六 · 早班机</div>
+    </div>
+    <div class="day-arrow">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="activity" data-keywords="清迈 上海 回国 飞机 机场 CNX 返程 早班机">
+      <div class="act-icon transport">✈️</div>
+      <div class="act-content">
+        <div class="act-name">清迈 → 上海</div>
+        <div class="act-reason">宁曼路到清迈机场仅 15 分钟车程，清迈机场小、值机快，不用太紧张。10:55 起飞，8 点出发绰绰有余。带着一箱子的泰北记忆回家 🌸</div>
+        <div class="act-meta">
+          <span class="act-tag tag-transport">Grab → CNX 机场</span>
+          <span class="act-tag tag-time">约 15 分钟</span>
+          <span class="act-tag tag-price">¥30-40</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== BUDGET ====== -->
+<div class="section-title"><span class="emoji">💰</span> 预算预估（两人，不含机票和酒店）</div>
+<table class="budget-table">
+  <tr><th>类别</th><th>项目</th><th class="amount">预估 (¥)</th></tr>
+  <tr><td>✈️ 城际交通</td><td>曼谷→清迈机票</td><td class="amount">400–800</td></tr>
+  <tr><td>🚇 曼谷交通</td><td>BTS/MRT/Grab 3天</td><td class="amount">200–300</td></tr>
+  <tr><td>🚖 清迈交通</td><td>Bolt/Grab 4天 + 素贴山往返</td><td class="amount">300–400</td></tr>
+  <tr><td>🍜 餐饮</td><td>8天，含高端晚餐和咖啡</td><td class="amount">3,000–4,500</td></tr>
+  <tr><td>💆 SPA</td><td>一次高端 SPA（Oasis 4h）</td><td class="amount">1,600</td></tr>
+  <tr><td>🎫 门票</td><td>大皇宫 + 卧佛寺 + 双龙寺</td><td class="amount">240</td></tr>
+  <tr><td>🛍️ 购物</td><td>乍都乍 + Siam + Maya + 夜市</td><td class="amount">2,000–5,000</td></tr>
+  <tr><td>📦 其他</td><td>小费、饮料、零食、杂项</td><td class="amount">500–1,000</td></tr>
+  <tr><td><strong>合计</strong></td><td></td><td class="amount"><strong>8,240–13,840</strong></td></tr>
+</table>
+<p style="font-size:0.82rem;color:var(--muted);margin-top:10px;">购物是最大变量，SPA 如果选 Let's Relax 可再省 ¥1,200。在 ¥8K-15K 区间内灵活可控。</p>
+
+<!-- ====== CHECKLIST ====== -->
+<div class="section-title"><span class="emoji">🧳</span> 行前清单</div>
+<div class="checklist">
+  <div class="check-item"><span class="chk-icon">📄</span> 护照有效期 > 6 个月</div>
+  <div class="check-item"><span class="chk-icon">🛂</span> 电子落地签或落地签准备</div>
+  <div class="check-item"><span class="chk-icon">✈️</span> 曼谷→清迈内陆段机票</div>
+  <div class="check-item"><span class="chk-icon">🏨</span> Maladee Rendezvous 预订（34间，抢手！）</div>
+  <div class="check-item"><span class="chk-icon">🏨</span> G Nimman / CHINO 预订</div>
+  <div class="check-item"><span class="chk-icon">💉</span> 常规疫苗 + 防蚊液</div>
+  <div class="check-item"><span class="chk-icon">💰</span> 泰铢换汇 + 备用现金</div>
+  <div class="check-item"><span class="chk-icon">📱</span> 泰国 SIM 卡 / eSIM</div>
+  <div class="check-item"><span class="chk-icon">🧴</span> 防晒 + 长裤（进寺庙）+ 薄外套</div>
+  <div class="check-item"><span class="chk-icon">📲</span> 下载 Grab / Bolt / Google Maps</div>
+  <div class="check-item"><span class="chk-icon">🍽️</span> David's Kitchen 提前预约</div>
+  <div class="check-item"><span class="chk-icon">💆</span> Oasis Spa 提前预约</div>
+</div>
+
+<!-- ====== TIPS ====== -->
+<div class="section-title"><span class="emoji">💡</span> 实用贴士</div>
+<ul class="tips-list">
+  <li><span class="tip-icon">🌡️</span> 9月底泰国 30-35°C，清迈比曼谷凉快 3-5°C，早晚可能 22°C，带一件薄开衫</li>
+  <li><span class="tip-icon">👔</span> 进寺庙需遮膝遮肩，大皇宫检查严格，建议随身带一条大围巾</li>
+  <li><span class="tip-icon">🚖</span> 清迈用 <strong>Bolt</strong> 比 Grab 便宜 20-30%；曼谷优先 BTS/MRT 避开堵车</li>
+  <li><span class="tip-icon">💵</span> 小费参考：餐厅找零留 20-40 泰铢，SPA 技师 100-200 泰铢，酒店行李员 20 泰铢</li>
+  <li><span class="tip-icon">🦟</span> 防蚊是认真的 — 登革热在泰国是真实风险，7-11 买 Soffell 驱蚊液（粉色瓶）</li>
+  <li><span class="tip-icon">💧</span> 不要喝自来水，7-11 买瓶装水，冰块在正规餐厅没问题</li>
+  <li><span class="tip-icon">📿</span> 清迈周日夜市你在曼谷（9/27），但长康路夜市每晚都开，不用担心错过</li>
+</ul>
+
+</div>
+
+<!-- ====== GUIDE PANEL ====== -->
+<div class="guide-overlay" id="guideOverlay" onclick="closeGuide()"></div>
+<div class="guide-panel" id="guidePanel">
+  <div class="guide-header">
+    <h3 id="guideTitle">攻略</h3>
+    <button class="guide-close" onclick="closeGuide()">✕</button>
+  </div>
+  <div class="guide-body" id="guideBody">
+    <div class="guide-loading"><div class="spinner"></div> 正在搜索攻略…</div>
+  </div>
+</div>
+
+<script>
+// ====== SEARCH ======
+function doSearch() {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const clearBtn = document.getElementById('searchClear');
+  const resultCount = document.getElementById('resultCount');
+  const noResults = document.getElementById('noResults');
+  const cards = document.querySelectorAll('.day-card');
+  let totalHits = 0;
+  let visibleCards = 0;
+
+  if (q) {
+    clearBtn.classList.add('visible');
+  } else {
+    clearBtn.classList.remove('visible');
+    resultCount.classList.remove('visible');
+    noResults.classList.remove('visible');
+    // Reset all
+    cards.forEach(c => { c.classList.remove('hidden-by-search'); });
+    document.querySelectorAll('.highlight-match').forEach(el => {
+      el.outerHTML = el.textContent;
+    });
+    // Re-apply city filter if active
+    const activeTab = document.querySelector('.tab-btn.active');
+    if (activeTab) {
+      const txt = activeTab.textContent;
+      if (txt.includes('曼谷')) filterCity('bangkok');
+      else if (txt.includes('清迈')) filterCity('chiangmai');
+    }
+    return;
+  }
+
+  cards.forEach(card => {
+    // Gather all searchable text
+    const keywords = (card.querySelector('.day-body')?.dataset.keywords || '') + ' ' +
+      (card.querySelector('.day-title')?.textContent || '') + ' ' +
+      (card.querySelector('.day-meta')?.textContent || '') + ' ' +
+      Array.from(card.querySelectorAll('.activity')).map(a => a.dataset.keywords || '').join(' ') + ' ' +
+      Array.from(card.querySelectorAll('.act-name')).map(a => a.textContent || '').join(' ') + ' ' +
+      Array.from(card.querySelectorAll('.act-reason')).map(a => a.textContent || '').join(' ');
+    const text = keywords.toLowerCase();
+
+    // Also check individual activities
+    const activities = card.querySelectorAll('.activity');
+    let anyActivityMatch = false;
+    activities.forEach(act => {
+      const akw = (act.dataset.keywords || '') + ' ' + (act.querySelector('.act-name')?.textContent || '') + ' ' + (act.querySelector('.act-reason')?.textContent || '');
+      if (akw.toLowerCase().includes(q)) {
+        anyActivityMatch = true;
+        act.style.display = '';
+        totalHits++;
+      } else {
+        act.style.display = 'none';
+      }
+    });
+
+    if (text.includes(q) || anyActivityMatch) {
+      card.classList.remove('hidden-by-search');
+      card.classList.add('open'); // Auto-expand matching cards
+      visibleCards++;
+      // Highlight matches
+      highlightInCard(card, q);
+    } else {
+      card.classList.add('hidden-by-search');
+    }
+  });
+
+  // Update UI
+  if (visibleCards === 0) {
+    noResults.classList.add('visible');
+    resultCount.classList.remove('visible');
+  } else {
+    noResults.classList.remove('visible');
+    resultCount.classList.add('visible');
+    resultCount.textContent = `找到 ${visibleCards} 天行程匹配"${q}"，共 ${totalHits} 个相关项目`;
+  }
+}
+
+function highlightInCard(card, q) {
+  // Remove old highlights first
+  card.querySelectorAll('.highlight-match').forEach(el => {
+    el.outerHTML = el.textContent;
+  });
+  // Highlight in act-names and act-reasons
+  card.querySelectorAll('.act-name, .act-reason').forEach(el => {
+    const html = el.innerHTML;
+    // Only highlight text nodes, not inside tags
+    const regex = new RegExp(`(${escapeRegex(q)})`, 'gi');
+    el.innerHTML = html.replace(regex, '<span class="highlight-match">$1</span>');
+  });
+}
+
+function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('searchClear').classList.remove('visible');
+  document.getElementById('resultCount').classList.remove('visible');
+  document.getElementById('noResults').classList.remove('visible');
+  document.querySelectorAll('.day-card').forEach(c => { c.classList.remove('hidden-by-search'); });
+  document.querySelectorAll('.activity').forEach(a => { a.style.display = ''; });
+  document.querySelectorAll('.highlight-match').forEach(el => { el.outerHTML = el.textContent; });
+  document.getElementById('searchInput').focus();
+  // Re-apply city filter
+  const activeTab = document.querySelector('.tab-btn.active');
+  if (activeTab) {
+    const txt = activeTab.textContent;
+    if (txt.includes('曼谷')) filterCity('bangkok');
+    else if (txt.includes('清迈')) filterCity('chiangmai');
+  }
+}
+
+function quickSearch(term) {
+  document.getElementById('searchInput').value = term;
+  doSearch();
+}
+
+// ====== GUIDE PANEL ======
+async function openGuide(query) {
+  const panel = document.getElementById('guidePanel');
+  const overlay = document.getElementById('guideOverlay');
+  const body = document.getElementById('guideBody');
+  const title = document.getElementById('guideTitle');
+
+  title.textContent = query;
+  panel.classList.add('open');
+  overlay.classList.add('open');
+  body.innerHTML = '<div class="guide-loading"><div class="spinner"></div> 正在搜索攻略…</div>';
+
+  // Build search URLs
+  const encoded = encodeURIComponent(query);
+  const searchUrls = {
+    xiaohongshu: `https://www.xiaohongshu.com/search_result?keyword=${encoded}&type=51`,
+    google: `https://www.google.com/search?q=${encoded}+攻略`,
+    zhihu: `https://www.zhihu.com/search?type=content&q=${encoded}+攻略`,
+    mafengwo: `https://www.mafengwo.cn/search/q.php?q=${encoded}`,
+  };
+
+  // Try to fetch some quick info via WebFetch proxy approach
+  // Since we can't directly call WebFetch from JS, we build useful links and tips
+  let content = '';
+
+  // Category-specific curated tips (fallback when live fetch isn't available)
+  const tips = getCuratedTips(query);
+  if (tips) {
+    content += tips;
+  }
+
+  content += `
+    <h4>🔗 搜索攻略</h4>
+    <p>点击以下链接搜索最新攻略（推荐前两个）：</p>
+    <ul>
+      <li>📕 <a href="${searchUrls.xiaohongshu}" target="_blank">在小红书搜索"${query}"</a> — 最新真实体验</li>
+      <li>🔍 <a href="${searchUrls.google}" target="_blank">在 Google 搜索"${query}"</a> — 综合攻略</li>
+      <li>💬 <a href="${searchUrls.zhihu}" target="_blank">在知乎搜索"${query}"</a> — 深度分析</li>
+      <li>🐝 <a href="${searchUrls.mafengwo}" target="_blank">在马蜂窝搜索"${query}"</a> — 游记攻略</li>
+    </ul>
+    <h4>💡 搜索技巧</h4>
+    <ul>
+      <li>小红书搜 <strong>"${query} 避雷"</strong> 看差评和真实体验</li>
+      <li>Google 搜 <strong>"${query} 2026"</strong> 获取最新信息</li>
+      <li>B站/YouTube 搜 <strong>"${query} vlog"</strong> 看视频攻略</li>
+    </ul>
+  `;
+
+  body.innerHTML = content;
+}
+
+function getCuratedTips(query) {
+  const q = query.toLowerCase();
+  const tips = {
+    '曼谷乍都乍周末市场攻略 必买': `
+      <h4>🛍️ 乍都乍必买清单</h4>
+      <ul>
+        <li><strong>2-4区</strong>：泰国本土设计师服饰，棉麻连衣裙 ¥50-150</li>
+        <li><strong>7区</strong>：原创画作、雕塑，适合买装饰品</li>
+        <li><strong>8-11区</strong>：手工艺品、竹编包、木雕，砍价 30% 起</li>
+        <li><strong>必吃</strong>：椰子冰淇淋（¥6）、烤大虾（¥20/串）、芒果糯米饭</li>
+        <li><strong>避雷</strong>：中午 12-2 点最热，建议早上 10 点到或下午 3 点后</li>
+      </ul>
+      <div class="guide-tags"><span class="guide-tag">砍价30%起</span><span class="guide-tag">现金支付</span><span class="guide-tag">周六日限</span></div>
+    `,
+    '清迈素贴山双龙寺攻略 交通': `
+      <h4>🏔️ 素贴山双龙寺攻略</h4>
+      <ul>
+        <li><strong>交通</strong>：Bolt 包车往返约 300-400 泰铢（¥60-80），司机会在山上等你</li>
+        <li><strong>门票</strong>：30 泰铢（¥6），便宜到几乎免费</li>
+        <li><strong>309级台阶</strong>：两边是金色娜迦巨龙，爬上去约 10 分钟（有缆车备选）</li>
+        <li><strong>最佳时间</strong>：上午 10 点前或下午 4 点后，避开正午高温和旅行团</li>
+        <li><strong>着装</strong>：和所有寺庙一样，遮膝遮肩</li>
+        <li><strong>拍照点</strong>：山顶平台拍清迈全景，寺庙后方金色佛塔</li>
+      </ul>
+      <div class="guide-tags"><span class="guide-tag">清迈必去</span><span class="guide-tag">30分钟山路</span><span class="guide-tag">¥6门票</span></div>
+    `,
+    '清迈 oasis spa 攻略 价格': `
+      <h4>💆 Oasis Spa 攻略</h4>
+      <ul>
+        <li><strong>宁曼路店</strong>：红色兰纳大宅，清迈最有辨识度的 SPA 建筑</li>
+        <li><strong>招牌套餐</strong>："绿洲之旅"4小时 — 泰式按摩+精油+草药球+花瓣浴 ≈ ¥800/人</li>
+        <li><strong>2小时套餐</strong>：约 ¥400-500/人，适合时间紧</li>
+        <li><strong>预约</strong>：官网或 Klook 提前 3-7 天，旺季很满</li>
+        <li><strong>小费</strong>：技师 100-200 泰铢（¥20-40）</li>
+        <li><strong>对比</strong>：比 Let's Relax 贵 3-4 倍，但环境和手法完全不在一个级别</li>
+      </ul>
+      <div class="guide-tags"><span class="guide-tag">提前预约</span><span class="guide-tag">¥800/人</span><span class="guide-tag">宁曼路</span></div>
+    `,
+    '曼谷大皇宫攻略 门票 着装': `
+      <h4>🛕 大皇宫攻略</h4>
+      <ul>
+        <li><strong>门票</strong>：500 泰铢（¥100），含玉佛寺+大皇宫+柚木宫</li>
+        <li><strong>开放</strong>：8:30-15:30，建议 8:30 到避开旅行团</li>
+        <li><strong>着装严格</strong>：必须长裤/长裙、有袖上衣，不可露肩露肚脐</li>
+        <li><strong>门口有借衣服</strong>：押金 200 泰铢，但排队人多，建议自己穿好</li>
+        <li><strong>避雷</strong>：门口有人说"大皇宫关门了"都是骗子，不要信</li>
+        <li><strong>路线</strong>：大皇宫→卧佛寺步行 10 分钟，郑王庙需要坐船</li>
+      </ul>
+      <div class="guide-tags"><span class="guide-tag">¥100门票</span><span class="guide-tag">长裤必穿</span><span class="guide-tag">8:30开门</span></div>
+    `,
+  };
+
+  // Find best match
+  for (const [key, val] of Object.entries(tips)) {
+    if (q.includes(key) || key.includes(q) || 
+        q.split(' ').some(w => key.includes(w) && w.length > 2)) {
+      return val;
+    }
+  }
+  return null;
+}
+
+function closeGuide() {
+  document.getElementById('guidePanel').classList.remove('open');
+  document.getElementById('guideOverlay').classList.remove('open');
+}
+
+// ESC to close guide
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeGuide();
+});
+
+// ====== EXPAND/COLLAPSE ======
+function expandAll() {
+  document.querySelectorAll('.day-card').forEach(c => c.classList.add('open'));
+  updateTabs('expandAll');
+}
+function collapseAll() {
+  document.querySelectorAll('.day-card').forEach(c => c.classList.remove('open'));
+  updateTabs('collapseAll');
+}
+function filterCity(city) {
+  document.querySelectorAll('.day-card').forEach(c => {
+    if (city === 'all') { c.style.display = ''; }
+    else { c.style.display = c.dataset.city === city ? '' : 'none'; }
+  });
+  updateTabs('filterCity', city);
+}
+function updateTabs(action, city) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  if (action === 'expandAll') document.querySelector('.tab-btn:nth-child(1)').classList.add('active');
+  else if (action === 'collapseAll') document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
+  else if (action === 'filterCity') {
+    if (city === 'bangkok') document.querySelector('.tab-btn:nth-child(3)').classList.add('active');
+    else if (city === 'chiangmai') document.querySelector('.tab-btn:nth-child(4)').classList.add('active');
+    else document.querySelector('.tab-btn:nth-child(5)').classList.add('active');
+  }
+}
+</script>
+
+</body>
+</html>
