@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🇹🇭 泰国曼谷+清迈 8天7晚行程规划</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #faf8f5;
@@ -17,13 +18,13 @@
     --tag-bg: #f5f1eb;
     --bangkok: #e07b5a;
     --chiangmai: #5a9e7c;
-    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-    --shadow-hover: 0 4px 16px rgba(0,0,0,0.08);
-    --radius: 12px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.05);
+    --shadow-hover: 0 6px 24px rgba(0,0,0,0.1);
+    --radius: 16px;
     --highlight: #fff3cd;
     --search-bg: #f0ece6;
     --sidebar-w: 240px;
-    --sidebar-bg: #f5f1eb;
+    --sidebar-bg: #f2ede6;
     --sidebar-border: #e0dbd2;
   }
   @media (prefers-color-scheme: dark) {
@@ -37,11 +38,11 @@
       --accent3: #b8845c;
       --border: #363330;
       --tag-bg: #2d2924;
-      --shadow: 0 1px 3px rgba(0,0,0,0.2);
-      --shadow-hover: 0 4px 16px rgba(0,0,0,0.3);
+      --shadow: 0 2px 12px rgba(0,0,0,0.2);
+      --shadow-hover: 0 6px 24px rgba(0,0,0,0.3);
       --highlight: #4a3f1a;
       --search-bg: #2d2924;
-      --sidebar-bg: #1e1c18;
+      --sidebar-bg: #1f1c19;
       --sidebar-border: #2d2a25;
     }
   }
@@ -50,7 +51,7 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -58,7 +59,7 @@
   .sidebar {
     position: fixed; top: 0; left: 0; bottom: 0;
     width: var(--sidebar-w); background: var(--sidebar-bg);
-    border-right: 1px solid var(--sidebar-border);
+    border-right: 1px solid var(--border);
     z-index: 150; display: flex; flex-direction: column;
     overflow: hidden;
   }
@@ -133,25 +134,42 @@
 
   /* Hero */
   .hero {
-    background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 30%, #d4c8b8 70%, #c5d5c0 100%);
+    background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 25%, #f0e0d0 40%, #d4c8b8 65%, #c5d5c0 85%, #dce8d5 100%);
     padding: 48px 24px 40px;
     text-align: center;
     position: relative;
     overflow: hidden;
   }
+  .hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(255,255,255,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 30%, rgba(255,255,255,0.1) 0%, transparent 40%);
+    z-index: 1;
+  }
   @media (prefers-color-scheme: dark) {
-    .hero { background: linear-gradient(135deg, #2d2418 0%, #34291c 30%, #2a3025 70%, #1e2a20 100%); }
+    .hero { background: linear-gradient(135deg, #2d2418 0%, #34291c 25%, #3a2e1f 40%, #2a3025 65%, #1e2a20 85%, #242f24 100%); }
+    .hero::before {
+      background:
+        radial-gradient(circle at 20% 50%, rgba(255,255,255,0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,0.02) 0%, transparent 40%);
+    }
+    .tag-transport { background: #1e2d40; color: #8ab4f8; }
+    .tag-time { background: #3d2e1e; color: #f0b878; }
+    .tag-price { background: #1e3028; color: #78c898; }
+    .tag-food { background: #3d1e2a; color: #f090a8; }
   }
   .hero::after {
     content: ''; position: absolute; bottom: -24px; left: 0; right: 0; height: 48px;
-    background: var(--bg); border-radius: 50% 50% 0 0;
+    background: var(--bg); border-radius: 50% 50% 0 0; z-index: 2;
   }
-  .hero h1 { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; }
-  .hero .subtitle { font-size: 1rem; color: var(--muted); font-weight: 400; }
-  .hero .meta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+  .hero h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; position: relative; z-index: 2; font-family: 'Playfair Display', 'Georgia', 'Noto Serif SC', serif; }
+  .hero .subtitle { font-size: 1rem; color: var(--muted); font-weight: 400; font-style: italic; position: relative; z-index: 2; }
+  .hero .divider { width: 60px; height: 2px; background: var(--accent); margin: 16px auto 18px; position: relative; z-index: 2; opacity: 0.5; }
+  .hero .meta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 20px; position: relative; z-index: 2; }
   .hero .meta-chip {
     background: rgba(255,255,255,0.7); backdrop-filter: blur(8px);
-    padding: 5px 12px; border-radius: 20px; font-size: 0.82rem; color: var(--text);
+    padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; color: var(--text);
     border: 1px solid rgba(0,0,0,0.08);
   }
   @media (prefers-color-scheme: dark) {
@@ -159,7 +177,7 @@
   }
 
   /* Container */
-  .container { max-width: 780px; margin: 0 auto; padding: 24px 28px 60px; }
+  .container { max-width: 860px; margin: 0 auto; padding: 24px 28px 60px; }
 
   /* Hide old search wrap (moved to sidebar) */
   .search-wrap { display: none; }
@@ -168,9 +186,10 @@
 
   /* Section titles */
   .section-title {
-    font-size: 1.25rem; font-weight: 700; margin: 36px 0 16px;
+    font-size: 1.25rem; font-weight: 700; margin: 48px 0 20px;
     padding-left: 14px; border-left: 3px solid var(--accent);
     display: flex; align-items: center; gap: 8px;
+    font-family: 'Playfair Display', 'Georgia', 'Noto Serif SC', serif;
   }
   .section-title .emoji { font-size: 1.35rem; }
 
@@ -292,7 +311,7 @@
   /* Day card */
   .day-card {
     background: var(--card); border-radius: var(--radius); border: 1px solid var(--border);
-    box-shadow: var(--shadow); margin-bottom: 14px; overflow: hidden;
+    box-shadow: var(--shadow); margin-bottom: 18px; overflow: hidden;
     transition: box-shadow 0.2s, opacity 0.2s;
   }
   .day-card:hover { box-shadow: var(--shadow-hover); }
@@ -310,7 +329,7 @@
   .day-num.chiangmai { background: #dff0e7; color: var(--chiangmai); }
   .day-num.transit { background: #e8e0f0; color: #7b5ea7; }
   .day-info { flex: 1; min-width: 0; }
-  .day-info .day-title { font-weight: 600; font-size: 1rem; }
+  .day-info .day-title { font-weight: 600; font-size: 1rem; font-family: 'Playfair Display', 'Georgia', 'Noto Serif SC', serif; }
   .day-info .day-meta { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
   .day-arrow { color: var(--muted); font-size: 0.85rem; transition: transform 0.25s; flex-shrink: 0; }
   .day-card.open .day-arrow { transform: rotate(180deg); }
@@ -319,7 +338,7 @@
   .day-card.open .day-body { display: block; }
 
   /* Activity item */
-  .activity { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px dashed var(--border); align-items: flex-start; }
+  .activity { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px dashed var(--border); align-items: flex-start; }
   .activity:last-child { border-bottom: none; }
   .act-icon {
     width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
@@ -341,9 +360,10 @@
     font-size: 0.73rem; padding: 3px 10px; border-radius: 14px; font-weight: 500;
     white-space: nowrap;
   }
-  .tag-transport { background: #e8eaf6; color: #4a5fa8; }
-  .tag-time { background: #fef3e4; color: #b87a2b; }
-  .tag-price { background: #e8f5e9; color: #3d7a4f; }
+  .tag-transport { background: #dce8f8; color: #2c5282; }
+  .tag-time { background: #fde8d0; color: #9c5a1a; }
+  .tag-price { background: #d8f0e0; color: #2d6a3f; }
+  .tag-food { background: #fde0e8; color: #8b2d4b; }
 
   /* Guide search button per activity */
   .guide-btn {
@@ -389,21 +409,26 @@
 
   /* Style Guide */
   .style-guide-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 14px; margin-bottom: 20px;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 18px; margin-bottom: 20px;
   }
   .style-card {
     background: var(--card); border-radius: var(--radius); padding: 20px;
     border: 1px solid var(--border); box-shadow: var(--shadow);
-    transition: box-shadow 0.2s;
+    transition: box-shadow 0.2s; position: relative; overflow: hidden;
+  }
+  .style-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent); border-radius: 0;
   }
   .style-card:hover { box-shadow: var(--shadow-hover); }
-  .style-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .style-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; font-family: 'Playfair Display', 'Georgia', 'Noto Serif SC', serif; }
   .style-card .style-section { margin-bottom: 10px; }
   .style-card .style-section:last-child { margin-bottom: 0; }
   .style-card .style-label {
     font-size: 0.75rem; font-weight: 600; color: var(--accent);
     text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;
+    font-family: 'Playfair Display', 'Georgia', 'Noto Serif SC', serif;
   }
   .style-card ul { padding-left: 16px; margin: 0; }
   .style-card li { font-size: 0.82rem; color: var(--text); line-height: 1.55; margin-bottom: 3px; }
@@ -426,7 +451,7 @@
     .main-content { margin-left: 0; }
     .container { padding: 16px 14px 40px; }
     .hero { padding: 36px 16px 32px; }
-    .hero h1 { font-size: 1.4rem; }
+    .hero h1 { font-size: 1.6rem; }
     .day-header { padding: 14px 16px; }
     .day-body { padding: 0 16px 16px; }
     .activity { gap: 10px; padding: 12px 0; }
@@ -517,6 +542,7 @@
 <div class="hero">
   <h1>🇹🇭 泰国曼谷+清迈 · 8天7晚</h1>
   <p class="subtitle">松弛度假 × 河畔精品 × 咖啡巡礼</p>
+  <div class="divider"></div>
   <div class="meta-row">
     <span class="meta-chip">📅 9/26 – 10/3</span>
     <span class="meta-chip">✈️ 上海出发</span>
@@ -1771,13 +1797,18 @@ function updateThemeOverride() {
           --bg: #1a1815; --card: #24211e; --text: #e8e4dd;
           --muted: #9c948a; --accent: #e09652; --accent2: #6ab896;
           --accent3: #b8845c; --border: #363330; --tag-bg: #2d2924;
-          --shadow: 0 1px 3px rgba(0,0,0,0.2);
-          --shadow-hover: 0 4px 16px rgba(0,0,0,0.3);
+          --shadow: 0 2px 12px rgba(0,0,0,0.2);
+          --shadow-hover: 0 6px 24px rgba(0,0,0,0.3);
           --highlight: #4a3f1a; --search-bg: #2d2924;
-          --sidebar-bg: #1e1c18; --sidebar-border: #2d2a25;
+          --sidebar-bg: #1f1c19; --sidebar-border: #2d2a25;
+          --radius: 16px;
         }
-        .hero { background: linear-gradient(135deg, #2d2418 0%, #34291c 30%, #2a3025 70%, #1e2a20 100%) !important; }
+        .hero { background: linear-gradient(135deg, #2d2418 0%, #34291c 25%, #3a2e1f 40%, #2a3025 65%, #1e2a20 85%, #242f24 100%) !important; }
         .hero .meta-chip { background: rgba(255,255,255,0.1) !important; border-color: rgba(255,255,255,0.1) !important; }
+        .tag-transport { background: #1e2d40 !important; color: #8ab4f8 !important; }
+        .tag-time { background: #3d2e1e !important; color: #f0b878 !important; }
+        .tag-price { background: #1e3028 !important; color: #78c898 !important; }
+        .tag-food { background: #3d1e2a !important; color: #f090a8 !important; }
       `;
       document.getElementById('themeIcon').textContent = '☀️';
       document.getElementById('themeLabel').textContent = '浅色模式';
