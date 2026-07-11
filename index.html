@@ -22,6 +22,9 @@
     --radius: 12px;
     --highlight: #fff3cd;
     --search-bg: #f0ece6;
+    --sidebar-w: 240px;
+    --sidebar-bg: #f5f1eb;
+    --sidebar-border: #e0dbd2;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -38,6 +41,8 @@
       --shadow-hover: 0 4px 16px rgba(0,0,0,0.3);
       --highlight: #4a3f1a;
       --search-bg: #2d2924;
+      --sidebar-bg: #1e1c18;
+      --sidebar-border: #2d2a25;
     }
   }
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -48,6 +53,83 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
+
+  /* ====== SIDEBAR ====== */
+  .sidebar {
+    position: fixed; top: 0; left: 0; bottom: 0;
+    width: var(--sidebar-w); background: var(--sidebar-bg);
+    border-right: 1px solid var(--sidebar-border);
+    z-index: 150; display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .sidebar-search {
+    padding: 16px 14px 10px; flex-shrink: 0;
+  }
+  .sidebar-search .search-bar {
+    display: flex; gap: 6px; align-items: center;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 6px 6px 6px 12px;
+  }
+  .sidebar-search .search-bar input {
+    flex: 1; border: none; background: transparent;
+    font-size: 0.82rem; color: var(--text); outline: none;
+    font-family: inherit; min-width: 0;
+  }
+  .sidebar-search .search-bar input::placeholder { color: var(--muted); font-size: 0.78rem; }
+  .sidebar-search .search-bar .search-icon { font-size: 0.95rem; flex-shrink: 0; }
+  .sidebar-search .search-bar .search-clear {
+    background: none; border: none; font-size: 1rem; cursor: pointer;
+    color: var(--muted); padding: 2px 6px; border-radius: 50%;
+    display: none; line-height: 1;
+  }
+  .sidebar-search .search-bar .search-clear.visible { display: block; }
+  .sidebar-nav {
+    flex: 1; overflow-y: auto; padding: 4px 0;
+  }
+  .sidebar-nav .nav-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px; font-size: 0.88rem; color: var(--text);
+    cursor: pointer; transition: all 0.15s; border-left: 3px solid transparent;
+    text-decoration: none; font-weight: 400; margin: 1px 0;
+  }
+  .sidebar-nav .nav-item:hover {
+    background: var(--tag-bg); color: var(--accent);
+  }
+  .sidebar-nav .nav-item.active {
+    background: var(--tag-bg); color: var(--accent);
+    border-left-color: var(--accent); font-weight: 600;
+  }
+  .sidebar-nav .nav-emoji { font-size: 1rem; flex-shrink: 0; width: 22px; text-align: center; }
+  .sidebar-footer {
+    padding: 12px 14px; border-top: 1px solid var(--sidebar-border);
+    flex-shrink: 0;
+  }
+  .sidebar-footer .theme-toggle {
+    display: flex; align-items: center; gap: 8px;
+    width: 100%; padding: 8px 12px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--card);
+    cursor: pointer; font-size: 0.82rem; color: var(--text);
+    font-family: inherit; transition: all 0.15s;
+  }
+  .sidebar-footer .theme-toggle:hover { border-color: var(--accent); }
+
+  /* ====== HAMBURGER ====== */
+  .hamburger {
+    display: none; position: fixed; top: 12px; left: 12px;
+    z-index: 160; width: 40px; height: 40px; border-radius: 10px;
+    background: var(--card); border: 1px solid var(--border);
+    font-size: 1.3rem; cursor: pointer; color: var(--text);
+    align-items: center; justify-content: center;
+    box-shadow: var(--shadow);
+  }
+  .sidebar-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.35);
+    z-index: 149;
+  }
+  .sidebar-overlay.open { display: block; }
+
+  /* Main wrapper */
+  .main-content { margin-left: var(--sidebar-w); min-height: 100vh; }
 
   /* Hero */
   .hero {
@@ -77,7 +159,12 @@
   }
 
   /* Container */
-  .container { max-width: 820px; margin: 0 auto; padding: 24px 20px 60px; }
+  .container { max-width: 780px; margin: 0 auto; padding: 24px 28px 60px; }
+
+  /* Hide old search wrap (moved to sidebar) */
+  .search-wrap { display: none; }
+
+  /* ====== OLD SEARCH BAR (hidden, styles kept for reference) ====== */
 
   /* Section titles */
   .section-title {
@@ -300,6 +387,27 @@
   .tab-btn:hover { border-color: var(--accent); color: var(--accent); }
   .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
+  /* Style Guide */
+  .style-guide-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px; margin-bottom: 20px;
+  }
+  .style-card {
+    background: var(--card); border-radius: var(--radius); padding: 20px;
+    border: 1px solid var(--border); box-shadow: var(--shadow);
+    transition: box-shadow 0.2s;
+  }
+  .style-card:hover { box-shadow: var(--shadow-hover); }
+  .style-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .style-card .style-section { margin-bottom: 10px; }
+  .style-card .style-section:last-child { margin-bottom: 0; }
+  .style-card .style-label {
+    font-size: 0.75rem; font-weight: 600; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;
+  }
+  .style-card ul { padding-left: 16px; margin: 0; }
+  .style-card li { font-size: 0.82rem; color: var(--text); line-height: 1.55; margin-bottom: 3px; }
+
   /* Tips */
   .tips-list { list-style: none; }
   .tips-list li { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; display: flex; gap: 10px; align-items: flex-start; }
@@ -307,19 +415,30 @@
   .tips-list .tip-icon { flex-shrink: 0; font-size: 1.1rem; }
 
   /* Responsive */
-  @media (max-width: 600px) {
+  @media (max-width: 767px) {
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-overlay.open { display: block; }
+    .hamburger { display: flex; }
+    .main-content { margin-left: 0; }
+    .container { padding: 16px 14px 40px; }
     .hero { padding: 36px 16px 32px; }
     .hero h1 { font-size: 1.4rem; }
-    .container { padding: 16px 12px 40px; }
     .day-header { padding: 14px 16px; }
     .day-body { padding: 0 16px 16px; }
     .activity { gap: 10px; padding: 12px 0; }
     .act-icon { width: 30px; height: 30px; font-size: 0.95rem; border-radius: 8px; }
     .guide-panel { width: 100vw; max-width: 100vw; }
+    .style-guide-grid { grid-template-columns: 1fr; }
   }
 
   /* Print */
   @media print {
+    .sidebar, .hamburger, .sidebar-overlay { display: none !important; }
+    .main-content { margin-left: 0 !important; }
     .day-card { break-inside: avoid; }
     .day-body { display: block !important; }
     .day-arrow, .search-wrap, .guide-btn, .tabs, .guide-panel, .guide-overlay { display: none !important; }
@@ -345,6 +464,55 @@
 </head>
 <body>
 
+<!-- ====== HAMBURGER ====== -->
+<button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="菜单">☰</button>
+
+<!-- ====== SIDEBAR OVERLAY ====== -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<!-- ====== SIDEBAR ====== -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-search">
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="搜索景点、美食、SPA…" oninput="doSearch()" onfocus="this.select()">
+      <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+    </div>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-item active" data-target="overview" onclick="scrollToSection('overview')">
+      <span class="nav-emoji">📅</span> 行程总览
+    </a>
+    <a class="nav-item" data-target="hotels" onclick="scrollToSection('hotels')">
+      <span class="nav-emoji">🏨</span> 住宿安排
+    </a>
+    <a class="nav-item" data-target="itinerary" onclick="scrollToSection('itinerary')">
+      <span class="nav-emoji">📆</span> 每日行程
+    </a>
+    <a class="nav-item" data-target="style-guide" onclick="scrollToSection('style-guide')">
+      <span class="nav-emoji">📸</span> 出片穿搭
+    </a>
+    <a class="nav-item" data-target="budget" onclick="scrollToSection('budget')">
+      <span class="nav-emoji">💰</span> 预算预估
+    </a>
+    <a class="nav-item" data-target="checklist" onclick="scrollToSection('checklist')">
+      <span class="nav-emoji">🧳</span> 行前清单
+    </a>
+    <a class="nav-item" data-target="tips" onclick="scrollToSection('tips')">
+      <span class="nav-emoji">💡</span> 实用贴士
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <button class="theme-toggle" onclick="toggleTheme()">
+      <span class="nav-emoji" id="themeIcon">🌓</span>
+      <span id="themeLabel">深色模式</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ====== MAIN CONTENT ====== -->
+<div class="main-content">
+
 <!-- Hero -->
 <div class="hero">
   <h1>🇹🇭 泰国曼谷+清迈 · 8天7晚</h1>
@@ -359,25 +527,6 @@
 
 <div class="container">
 
-<!-- ====== SEARCH BAR ====== -->
-<div class="search-wrap">
-  <div class="search-bar">
-    <span class="search-icon">🔍</span>
-    <input type="text" id="searchInput" placeholder="搜索景点、美食、SPA、购物… 试试搜"必打卡"或"必买"或"咖啡"…" oninput="doSearch()" onfocus="this.select()">
-    <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
-  </div>
-  <div class="search-hint">
-    试试搜：
-    <span onclick="quickSearch('必打卡')">必打卡</span>
-    <span onclick="quickSearch('必买')">必买</span>
-    <span onclick="quickSearch('咖啡')">咖啡</span>
-    <span onclick="quickSearch('夜市')">夜市</span>
-    <span onclick="quickSearch('SPA')">SPA</span>
-    <span onclick="quickSearch('米其林')">米其林</span>
-    <span onclick="quickSearch('寺庙')">寺庙</span>
-    <span onclick="quickSearch('按摩')">按摩</span>
-  </div>
-</div>
 <div class="result-count" id="resultCount"></div>
 <div class="no-results" id="noResults">
   <div class="big-emoji">🔎</div>
@@ -385,7 +534,7 @@
 </div>
 
 <!-- ====== OVERVIEW ====== -->
-<div class="section-title"><span class="emoji">🗺️</span> 行程总览</div>
+<div class="section-title" id="overview"><span class="emoji">🗺️</span> 行程总览</div>
 <div class="overview-grid">
   <div class="overview-card"><div class="label">曼谷</div><div class="value">9/26 – 9/29 · 2.5 天</div></div>
   <div class="overview-card"><div class="label">清迈</div><div class="value">9/29 – 10/3 · 3.5 天</div></div>
@@ -394,7 +543,7 @@
 </div>
 
 <!-- ====== HOTELS ====== -->
-<div class="section-title"><span class="emoji">🏨</span> 住宿安排</div>
+<div class="section-title" id="hotels"><span class="emoji">🏨</span> 住宿安排</div>
 <div class="hotel-row">
   <div class="hotel-card">
     <h4>🏢 曼谷城堡丽笙酒店</h4>
@@ -423,7 +572,7 @@
 </div>
 
 <!-- ====== ITINERARY ====== -->
-<div class="section-title"><span class="emoji">📅</span> 每日行程 <span style="font-weight:400;font-size:0.85rem;color:var(--muted);margin-left:8px;">点击展开 · 点 🔍 搜攻略</span></div>
+<div class="section-title" id="itinerary"><span class="emoji">📅</span> 每日行程 <span style="font-weight:400;font-size:0.85rem;color:var(--muted);margin-left:8px;">点击展开 · 点 🔍 搜攻略</span></div>
 
 <div class="tabs">
   <button class="tab-btn active" onclick="expandAll()">展开全部</button>
@@ -888,8 +1037,179 @@
   </div>
 </div>
 
+<!-- ====== STYLE GUIDE ====== -->
+<div class="section-title" id="style-guide"><span class="emoji">📸</span> 出片穿搭汇总</div>
+<p style="font-size:0.85rem;color:var(--muted);margin-bottom:16px;">汇总各景点的拍照攻略和穿搭推荐，轻松出片不踩雷 📷</p>
+
+<div class="style-guide-grid">
+  <!-- 乍都乍周末市场 -->
+  <div class="style-card">
+    <h4>🛍️ 乍都乍周末市场</h4>
+    <div class="style-section">
+      <div class="style-label">📸 出片攻略</div>
+      <ul>
+        <li>2-4区彩色帐篷背景最佳，俯拍摊位层次感</li>
+        <li>7区画廊门口拍艺术感打卡照</li>
+        <li>傍晚5点黄金光线穿过市场棚顶</li>
+      </ul>
+    </div>
+    <div class="style-section">
+      <div class="style-label">👗 穿搭推荐</div>
+      <ul>
+        <li>清凉透气为主（市场没空调！），推荐棉麻连衣裙/阔腿裤+吊带+防晒衫</li>
+        <li>草编包+墨镜+平底凉鞋</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 大皇宫 -->
+  <div class="style-card">
+    <h4>🛕 大皇宫</h4>
+    <div class="style-section">
+      <div class="style-label">📸 出片攻略</div>
+      <ul>
+        <li>玉佛寺金色佛塔前用广角仰拍</li>
+        <li>壁画长廊逆光剪影</li>
+        <li>大平台金翅鸟雕像侧面45°</li>
+        <li>避开正午顶光，早上8:30或下午3点后</li>
+      </ul>
+    </div>
+    <div class="style-section">
+      <div class="style-label">👗 穿搭推荐</div>
+      <ul>
+        <li>必须长裤/长裙+有袖上衣！推荐白色/米色长裙配金色寺庙（反差最大）</li>
+        <li>或泰丝印花长裙融入场景，大围巾遮肩又出片</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Asiatique河滨夜市 -->
+  <div class="style-card">
+    <h4>🎡 Asiatique河滨夜市</h4>
+    <div class="style-section">
+      <div class="style-label">📸 出片攻略</div>
+      <ul>
+        <li>摩天轮前河畔逆光人像（日落前30分钟）</li>
+        <li>旧仓库砖墙背景街拍</li>
+        <li>旋转木马暖光夜景</li>
+        <li>河边码头拍接驳船驶来</li>
+      </ul>
+    </div>
+    <div class="style-section">
+      <div class="style-label">👗 穿搭推荐</div>
+      <ul>
+        <li>傍晚河边有风微凉，推荐吊带裙+薄开衫</li>
+        <li>暖色系（砖红/姜黄）配工业风背景</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 素贴山双龙寺 -->
+  <div class="style-card">
+    <h4>🏔️ 素贴山双龙寺</h4>
+    <div class="style-section">
+      <div class="style-label">📸 出片攻略</div>
+      <ul>
+        <li>309级台阶两侧娜迦龙低角度仰拍</li>
+        <li>山顶平台拍清迈全景（上午光线通透）</li>
+        <li>寺庙后方金色佛塔+蓝天</li>
+        <li>寺庙内长廊光影</li>
+      </ul>
+    </div>
+    <div class="style-section">
+      <div class="style-label">👗 穿搭推荐</div>
+      <ul>
+        <li>寺庙着装（长裤/长裙+有袖），推荐白色上衣+亮色长裙</li>
+        <li>在金色寺庙前跳脱出来，薄围巾遮肩又飘逸</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 塔佩门+柴迪隆寺 -->
+  <div class="style-card">
+    <h4>🛕 塔佩门+柴迪隆寺</h4>
+    <div class="style-section">
+      <div class="style-label">📸 出片攻略</div>
+      <ul>
+        <li>塔佩门广场鸽子飞起瞬间（找人帮忙撒玉米）</li>
+        <li>古城墙红砖纹理特写</li>
+        <li>柴迪隆寺古佛塔黄昏暖金色（下午4-5点）</li>
+        <li>佛塔下方仰拍</li>
+      </ul>
+    </div>
+    <div class="style-section">
+      <div class="style-label">👗 穿搭推荐</div>
+      <ul>
+        <li>古城色调偏暖（红砖+金色），推荐浅蓝/白色/卡其色系</li>
+        <li>棉麻长裙+草编包，古城松弛感</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 宁曼路咖啡巡礼 -->
+  <div class="style-card">
+    <h4>☕ 宁曼路咖啡巡礼</h4>
+    <div class="style-section">
+      <div class="style-label">📸 出片攻略</div>
+      <ul>
+        <li>Ristr8to 骷髅拉花特写+手举杯拍店招</li>
+        <li>Graph 暗黑工业风门口+店内角落光影</li>
+        <li>One Nimman 红砖钟楼前全景+楼梯转角</li>
+      </ul>
+    </div>
+    <div class="style-section">
+      <div class="style-label">👗 穿搭推荐</div>
+      <ul>
+        <li>清迈最潮街区，推荐韩系简约风或日系文艺风</li>
+        <li>宽松衬衫+直筒裤/牛仔短裤，帆布鞋好走路</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Oasis Spa -->
+  <div class="style-card">
+    <h4>💆 Oasis Spa</h4>
+    <div class="style-section">
+      <div class="style-label">📸 出片攻略</div>
+      <ul>
+        <li>红色兰纳大宅正面全景</li>
+        <li>中庭花园绿植背景</li>
+        <li>SPA房间内花瓣浴缸俯拍</li>
+        <li>迎宾饮品+精油摆盘特写</li>
+      </ul>
+    </div>
+    <div class="style-section">
+      <div class="style-label">👗 穿搭推荐</div>
+      <ul>
+        <li>SPA提供浴袍和拖鞋，不用操心穿搭！</li>
+        <li>但进门时可以穿度假风长裙拍一张大宅前的打卡照</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Maladee酒店 -->
+  <div class="style-card">
+    <h4>🏡 Maladee酒店</h4>
+    <div class="style-section">
+      <div class="style-label">📸 出片攻略</div>
+      <ul>
+        <li>中庭泳池+殖民建筑正面</li>
+        <li>房间浴缸+落地窗逆光</li>
+        <li>泳池边躺椅俯拍</li>
+        <li>早餐摆盘+泳池背景</li>
+      </ul>
+    </div>
+    <div class="style-section">
+      <div class="style-label">👗 穿搭推荐</div>
+      <ul>
+        <li>度假风为主，推荐泳衣+罩衫、丝质睡袍风、草帽+墨镜</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 <!-- ====== BUDGET ====== -->
-<div class="section-title"><span class="emoji">💰</span> 预算预估（两人，不含机票和酒店）</div>
+<div class="section-title" id="budget"><span class="emoji">💰</span> 预算预估（两人，不含机票和酒店）</div>
 <table class="budget-table">
   <tr><th>类别</th><th>项目</th><th class="amount">预估 (¥)</th></tr>
   <tr><td>✈️ 城际交通</td><td>曼谷→清迈机票</td><td class="amount">400–800</td></tr>
@@ -905,7 +1225,7 @@
 <p style="font-size:0.82rem;color:var(--muted);margin-top:10px;">购物是最大变量，SPA 如果选 Let's Relax 可再省 ¥1,200。在 ¥8K-15K 区间内灵活可控。</p>
 
 <!-- ====== CHECKLIST ====== -->
-<div class="section-title"><span class="emoji">🧳</span> 行前清单</div>
+<div class="section-title" id="checklist"><span class="emoji">🧳</span> 行前清单</div>
 <div class="checklist">
   <div class="check-item"><span class="chk-icon">📄</span> 护照有效期 > 6 个月</div>
   <div class="check-item"><span class="chk-icon">🛂</span> 电子落地签或落地签准备</div>
@@ -922,7 +1242,7 @@
 </div>
 
 <!-- ====== TIPS ====== -->
-<div class="section-title"><span class="emoji">💡</span> 实用贴士</div>
+<div class="section-title" id="tips"><span class="emoji">💡</span> 实用贴士</div>
 <ul class="tips-list">
   <li><span class="tip-icon">🌡️</span> 9月底泰国 30-35°C，清迈比曼谷凉快 3-5°C，早晚可能 22°C，带一件薄开衫</li>
   <li><span class="tip-icon">👔</span> 进寺庙需遮膝遮肩，大皇宫检查严格，建议随身带一条大围巾</li>
@@ -933,7 +1253,9 @@
   <li><span class="tip-icon">📿</span> 清迈周日夜市你在曼谷（9/27），但长康路夜市每晚都开，不用担心错过</li>
 </ul>
 
-</div>
+</div><!-- /container -->
+
+</div><!-- /main-content -->
 
 <!-- ====== GUIDE PANEL ====== -->
 <div class="guide-overlay" id="guideOverlay" onclick="closeGuide()"></div>
@@ -1362,6 +1684,115 @@ function updateTabs(action, city) {
     else document.querySelector('.tab-btn:nth-child(5)').classList.add('active');
   }
 }
+
+// ====== SIDEBAR INTERACTIONS ======
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    const offset = 20;
+    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+  // Close mobile sidebar
+  closeSidebar();
+  // Update active nav
+  setActiveNav(id);
+}
+
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('open');
+}
+
+function closeSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  sidebar.classList.remove('open');
+  overlay.classList.remove('open');
+}
+
+function setActiveNav(id) {
+  document.querySelectorAll('.sidebar-nav .nav-item').forEach(item => {
+    item.classList.toggle('active', item.dataset.target === id);
+  });
+}
+
+// Scroll spy - highlight active nav item
+const sectionIds = ['overview', 'hotels', 'itinerary', 'style-guide', 'budget', 'checklist', 'tips'];
+let scrollSpyTimeout;
+window.addEventListener('scroll', () => {
+  if (scrollSpyTimeout) return;
+  scrollSpyTimeout = setTimeout(() => {
+    scrollSpyTimeout = null;
+    let current = sectionIds[0];
+    for (const id of sectionIds) {
+      const el = document.getElementById(id);
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= 120) {
+          current = id;
+        }
+      }
+    }
+    setActiveNav(current);
+  }, 80);
+}, { passive: true });
+
+// ====== THEME TOGGLE ======
+function toggleTheme() {
+  const html = document.documentElement;
+  const icon = document.getElementById('themeIcon');
+  const label = document.getElementById('themeLabel');
+  if (html.hasAttribute('data-theme')) {
+    html.removeAttribute('data-theme');
+    icon.textContent = '🌓';
+    label.textContent = '深色模式';
+  } else {
+    html.setAttribute('data-theme', 'dark');
+    icon.textContent = '☀️';
+    label.textContent = '浅色模式';
+  }
+}
+
+// Apply manual dark theme override
+const styleEl = document.createElement('style');
+styleEl.id = 'theme-override';
+document.head.appendChild(styleEl);
+
+function updateThemeOverride() {
+  const html = document.documentElement;
+  if (html.hasAttribute('data-theme')) {
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      styleEl.textContent = `
+        :root {
+          --bg: #1a1815; --card: #24211e; --text: #e8e4dd;
+          --muted: #9c948a; --accent: #e09652; --accent2: #6ab896;
+          --accent3: #b8845c; --border: #363330; --tag-bg: #2d2924;
+          --shadow: 0 1px 3px rgba(0,0,0,0.2);
+          --shadow-hover: 0 4px 16px rgba(0,0,0,0.3);
+          --highlight: #4a3f1a; --search-bg: #2d2924;
+          --sidebar-bg: #1e1c18; --sidebar-border: #2d2a25;
+        }
+        .hero { background: linear-gradient(135deg, #2d2418 0%, #34291c 30%, #2a3025 70%, #1e2a20 100%) !important; }
+        .hero .meta-chip { background: rgba(255,255,255,0.1) !important; border-color: rgba(255,255,255,0.1) !important; }
+      `;
+      document.getElementById('themeIcon').textContent = '☀️';
+      document.getElementById('themeLabel').textContent = '浅色模式';
+    }
+  } else {
+    styleEl.textContent = '';
+    document.getElementById('themeIcon').textContent = '🌓';
+    document.getElementById('themeLabel').textContent = '深色模式';
+  }
+}
+
+// Observe data-theme attribute changes
+const observer = new MutationObserver(updateThemeOverride);
+observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+updateThemeOverride();
 </script>
 
 </body>
