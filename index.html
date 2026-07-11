@@ -1079,9 +1079,9 @@ async function openGuide(query) {
   // Build search URLs
   const encoded = encodeURIComponent(query);
   const searchUrls = {
-    xiaohongshu: `https://www.xiaohongshu.com/search_result?keyword=${encoded}&type=51`,
+    xiaohongshu: `https://www.xiaohongshu.com/search_result/${encoded}`,
     google: `https://www.google.com/search?q=${encoded}+攻略`,
-    zhihu: `https://www.zhihu.com/search?type=content&q=${encoded}+攻略`,
+    zhihu: `https://www.zhihu.com/search?type=content&q=${encoded}`,
     mafengwo: `https://www.mafengwo.cn/search/q.php?q=${encoded}`,
   };
 
@@ -1093,6 +1093,11 @@ async function openGuide(query) {
   const tips = getCuratedTips(query);
   if (tips) {
     content += tips;
+  } else {
+    content += `
+      <div class="guide-tags"><span class="guide-tag">通用攻略</span></div>
+      <p style="color:var(--muted);font-size:0.85rem;">该景点暂无预置攻略，点击下方链接搜索最新攻略</p>
+    `;
   }
 
   content += `
@@ -1128,30 +1133,17 @@ function getCuratedTips(query) {
         <li><strong>避雷</strong>：中午 12-2 点最热，建议早上 10 点到或下午 3 点后</li>
       </ul>
       <div class="guide-tags"><span class="guide-tag">砍价30%起</span><span class="guide-tag">现金支付</span><span class="guide-tag">周六日限</span></div>
-    `,
-    '清迈素贴山双龙寺攻略 交通': `
-      <h4>🏔️ 素贴山双龙寺攻略</h4>
+      <h4>📸 出片攻略</h4>
       <ul>
-        <li><strong>交通</strong>：Bolt 包车往返约 300-400 泰铢（¥60-80），司机会在山上等你</li>
-        <li><strong>门票</strong>：30 泰铢（¥6），便宜到几乎免费</li>
-        <li><strong>309级台阶</strong>：两边是金色娜迦巨龙，爬上去约 10 分钟（有缆车备选）</li>
-        <li><strong>最佳时间</strong>：上午 10 点前或下午 4 点后，避开正午高温和旅行团</li>
-        <li><strong>着装</strong>：和所有寺庙一样，遮膝遮肩</li>
-        <li><strong>拍照点</strong>：山顶平台拍清迈全景，寺庙后方金色佛塔</li>
+        <li>2-4区彩色帐篷背景最佳，俯拍摊位层次感</li>
+        <li>7区画廊门口拍艺术感打卡照</li>
+        <li>傍晚5点黄金光线穿过市场棚顶</li>
       </ul>
-      <div class="guide-tags"><span class="guide-tag">清迈必去</span><span class="guide-tag">30分钟山路</span><span class="guide-tag">¥6门票</span></div>
-    `,
-    '清迈 oasis spa 攻略 价格': `
-      <h4>💆 Oasis Spa 攻略</h4>
+      <h4>👗 推荐穿搭</h4>
       <ul>
-        <li><strong>宁曼路店</strong>：红色兰纳大宅，清迈最有辨识度的 SPA 建筑</li>
-        <li><strong>招牌套餐</strong>："绿洲之旅"4小时 — 泰式按摩+精油+草药球+花瓣浴 ≈ ¥800/人</li>
-        <li><strong>2小时套餐</strong>：约 ¥400-500/人，适合时间紧</li>
-        <li><strong>预约</strong>：官网或 Klook 提前 3-7 天，旺季很满</li>
-        <li><strong>小费</strong>：技师 100-200 泰铢（¥20-40）</li>
-        <li><strong>对比</strong>：比 Let's Relax 贵 3-4 倍，但环境和手法完全不在一个级别</li>
+        <li>清凉透气为主（市场没空调！），推荐棉麻连衣裙/阔腿裤+吊带+防晒衫</li>
+        <li>草编包+墨镜+平底凉鞋</li>
       </ul>
-      <div class="guide-tags"><span class="guide-tag">提前预约</span><span class="guide-tag">¥800/人</span><span class="guide-tag">宁曼路</span></div>
     `,
     '曼谷大皇宫攻略 门票 着装': `
       <h4>🛕 大皇宫攻略</h4>
@@ -1164,17 +1156,174 @@ function getCuratedTips(query) {
         <li><strong>路线</strong>：大皇宫→卧佛寺步行 10 分钟，郑王庙需要坐船</li>
       </ul>
       <div class="guide-tags"><span class="guide-tag">¥100门票</span><span class="guide-tag">长裤必穿</span><span class="guide-tag">8:30开门</span></div>
+      <h4>📸 出片攻略</h4>
+      <ul>
+        <li>玉佛寺金色佛塔前用广角仰拍</li>
+        <li>壁画长廊逆光剪影</li>
+        <li>大平台金翅鸟雕像侧面45°</li>
+        <li>避开正午顶光，早上8:30或下午3点后</li>
+      </ul>
+      <h4>👗 推荐穿搭</h4>
+      <ul>
+        <li>⚠️ 必须长裤/长裙+有袖上衣！推荐白色/米色长裙配金色寺庙（反差最大）</li>
+        <li>或泰丝印花长裙融入场景，大围巾遮肩又出片</li>
+      </ul>
+    `,
+    '曼谷 asiatique 河滨夜市攻略': `
+      <h4>🎡 Asiatique 河滨夜市攻略</h4>
+      <ul>
+        <li><strong>交通</strong>：BTS 到 Saphan Taksin 站 2 号出口，免费接驳船 10 分钟</li>
+        <li><strong>时间</strong>：16:00-24:00，建议 17:00 到看日落</li>
+        <li><strong>特色</strong>：旧码头仓库改造，1500+ 商铺，摩天轮 ¥60/人</li>
+        <li><strong>餐饮</strong>：河边餐厅选择多，推荐 Baan Khanitha 河边泰餐</li>
+      </ul>
+      <div class="guide-tags"><span class="guide-tag">免费接驳船</span><span class="guide-tag">日落最佳</span><span class="guide-tag">摩天轮</span></div>
+      <h4>📸 出片攻略</h4>
+      <ul>
+        <li>摩天轮前河畔逆光人像（日落前30分钟）</li>
+        <li>旧仓库砖墙背景街拍</li>
+        <li>旋转木马暖光夜景</li>
+        <li>河边码头拍接驳船驶来</li>
+      </ul>
+      <h4>👗 推荐穿搭</h4>
+      <ul>
+        <li>傍晚河边有风微凉，推荐吊带裙+薄开衫</li>
+        <li>暖色系（砖红/姜黄）配工业风背景</li>
+      </ul>
+    `,
+    '清迈素贴山双龙寺攻略 交通': `
+      <h4>🏔️ 素贴山双龙寺攻略</h4>
+      <ul>
+        <li><strong>交通</strong>：Bolt 包车往返约 300-400 泰铢（¥60-80），司机会在山上等你</li>
+        <li><strong>门票</strong>：30 泰铢（¥6），便宜到几乎免费</li>
+        <li><strong>309级台阶</strong>：两边是金色娜迦巨龙，爬上去约 10 分钟（有缆车备选）</li>
+        <li><strong>最佳时间</strong>：上午 10 点前或下午 4 点后，避开正午高温和旅行团</li>
+        <li><strong>着装</strong>：和所有寺庙一样，遮膝遮肩</li>
+        <li><strong>拍照点</strong>：山顶平台拍清迈全景，寺庙后方金色佛塔</li>
+      </ul>
+      <div class="guide-tags"><span class="guide-tag">清迈必去</span><span class="guide-tag">30分钟山路</span><span class="guide-tag">¥6门票</span></div>
+      <h4>📸 出片攻略</h4>
+      <ul>
+        <li>309级台阶两侧娜迦龙低角度仰拍</li>
+        <li>山顶平台拍清迈全景（上午光线通透）</li>
+        <li>寺庙后方金色佛塔+蓝天</li>
+        <li>寺庙内长廊光影</li>
+      </ul>
+      <h4>👗 推荐穿搭</h4>
+      <ul>
+        <li>⚠️ 寺庙着装（长裤/长裙+有袖），推荐白色上衣+亮色长裙</li>
+        <li>在金色寺庙前跳脱出来，薄围巾遮肩又飘逸</li>
+      </ul>
+    `,
+    '清迈塔佩门柴迪隆寺攻略': `
+      <h4>🛕 塔佩门 + 柴迪隆寺攻略</h4>
+      <ul>
+        <li><strong>塔佩门</strong>：清迈古城东门，红色砖墙，广场鸽子是经典画面</li>
+        <li><strong>柴迪隆寺</strong>：建于1441年，清迈最高的古代佛塔，免费参观</li>
+        <li><strong>距离</strong>：塔佩门步行到柴迪隆寺约 8 分钟</li>
+        <li><strong>最佳时间</strong>：下午 4-5 点，夕阳下的古城最温柔</li>
+        <li><strong>着装</strong>：寺庙区域遮膝遮肩</li>
+      </ul>
+      <div class="guide-tags"><span class="guide-tag">免费</span><span class="guide-tag">古城核心</span><span class="guide-tag">黄昏最佳</span></div>
+      <h4>📸 出片攻略</h4>
+      <ul>
+        <li>塔佩门广场鸽子飞起瞬间（找人帮忙撒玉米）</li>
+        <li>古城墙红砖纹理特写</li>
+        <li>柴迪隆寺古佛塔黄昏暖金色（下午4-5点）</li>
+        <li>佛塔下方仰拍</li>
+      </ul>
+      <h4>👗 推荐穿搭</h4>
+      <ul>
+        <li>古城色调偏暖（红砖+金色），推荐浅蓝/白色/卡其色系</li>
+        <li>棉麻长裙+草编包，古城松弛感</li>
+      </ul>
+    `,
+    '清迈宁曼路咖啡巡礼': `
+      <h4>☕ 宁曼路咖啡巡礼攻略</h4>
+      <ul>
+        <li><strong>Ristr8to</strong>：世界拉花冠军，骷髅拉花招牌，¥20-30/杯</li>
+        <li><strong>Graph Cafe</strong>：暗黑工业风，特调冷萃，¥25-35/杯</li>
+        <li><strong>Roastniyom</strong>：本地人最爱，传统泰式咖啡+炼乳，¥15-20/杯</li>
+        <li><strong>路线</strong>：Ristr8to（宁曼17巷）→ Graph（宁曼9巷）步行5分钟</li>
+      </ul>
+      <div class="guide-tags"><span class="guide-tag">咖啡之城</span><span class="guide-tag">宁曼路</span><span class="guide-tag">三连跳</span></div>
+      <h4>📸 出片攻略</h4>
+      <ul>
+        <li>Ristr8to 骷髅拉花特写+手举杯拍店招</li>
+        <li>Graph 暗黑工业风门口+店内角落光影</li>
+        <li>One Nimman 红砖钟楼前全景+楼梯转角</li>
+      </ul>
+      <h4>👗 推荐穿搭</h4>
+      <ul>
+        <li>清迈最潮街区，推荐韩系简约风或日系文艺风</li>
+        <li>宽松衬衫+直筒裤/牛仔短裤，帆布鞋好走路</li>
+      </ul>
+    `,
+    '清迈 oasis spa 攻略 价格': `
+      <h4>💆 Oasis Spa 攻略</h4>
+      <ul>
+        <li><strong>宁曼路店</strong>：红色兰纳大宅，清迈最有辨识度的 SPA 建筑</li>
+        <li><strong>招牌套餐</strong>："绿洲之旅"4小时 — 泰式按摩+精油+草药球+花瓣浴 ≈ ¥800/人</li>
+        <li><strong>2小时套餐</strong>：约 ¥400-500/人，适合时间紧</li>
+        <li><strong>预约</strong>：官网或 Klook 提前 3-7 天，旺季很满</li>
+        <li><strong>小费</strong>：技师 100-200 泰铢（¥20-40）</li>
+        <li><strong>对比</strong>：比 Let's Relax 贵 3-4 倍，但环境和手法完全不在一个级别</li>
+      </ul>
+      <div class="guide-tags"><span class="guide-tag">提前预约</span><span class="guide-tag">¥800/人</span><span class="guide-tag">宁曼路</span></div>
+      <h4>📸 出片攻略</h4>
+      <ul>
+        <li>红色兰纳大宅正面全景</li>
+        <li>中庭花园绿植背景</li>
+        <li>SPA房间内花瓣浴缸俯拍</li>
+        <li>迎宾饮品+精油摆盘特写</li>
+      </ul>
+      <h4>👗 推荐穿搭</h4>
+      <ul>
+        <li>SPA提供浴袍和拖鞋，不用操心穿搭！</li>
+        <li>但进门时可以穿度假风长裙拍一张大宅前的打卡照</li>
+      </ul>
+    `,
+    '清迈 maladee rendezvous 酒店攻略': `
+      <h4>🏡 Maladee Rendezvous 酒店攻略</h4>
+      <ul>
+        <li><strong>风格</strong>：湄滨河畔殖民风格精品酒店，仅 34 间房，2022 年开业</li>
+        <li><strong>亮点</strong>：独立浴缸、开夜床服务、免费下午茶、单点早餐无限量</li>
+        <li><strong>位置</strong>：长康路区域，步行到 Night Bazaar 约 5-8 分钟</li>
+        <li><strong>服务</strong>：中文菜单早餐，每个细节都精心设计</li>
+      </ul>
+      <div class="guide-tags"><span class="guide-tag">精品酒店</span><span class="guide-tag">河畔殖民风</span><span class="guide-tag">34间</span></div>
+      <h4>📸 出片攻略</h4>
+      <ul>
+        <li>中庭泳池+殖民建筑正面</li>
+        <li>房间浴缸+落地窗逆光</li>
+        <li>泳池边躺椅俯拍</li>
+        <li>早餐摆盘+泳池背景</li>
+      </ul>
+      <h4>👗 推荐穿搭</h4>
+      <ul>
+        <li>度假风为主，推荐泳衣+罩衫、丝质睡袍风、草帽+墨镜</li>
+      </ul>
     `,
   };
 
-  // Find best match
+  // Tokenize query and key, match if >= 2 common words
+  const queryWords = q.split(/[\s,，、]+/).filter(w => w.length >= 1);
+  let bestMatch = null;
+  let bestScore = 0;
+
   for (const [key, val] of Object.entries(tips)) {
-    if (q.includes(key) || key.includes(q) || 
-        q.split(' ').some(w => key.includes(w) && w.length > 2)) {
-      return val;
+    const keyLower = key.toLowerCase();
+    const keyWords = keyLower.split(/[\s,，、]+/).filter(w => w.length >= 1);
+    const commonWords = queryWords.filter(w => keyWords.some(kw => kw.includes(w) || w.includes(kw)));
+    const score = commonWords.length;
+
+    if (score >= 2 && score > bestScore) {
+      bestScore = score;
+      bestMatch = val;
     }
   }
-  return null;
+
+  return bestMatch;
 }
 
 function closeGuide() {
